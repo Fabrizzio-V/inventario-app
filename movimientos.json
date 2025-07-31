@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1753991333170,
+    "productoId": 1753991333170,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "entrada",
+    "cantidad": 8,
+    "stockAnterior": 0,
+    "stockNuevo": 8,
+    "motivo": "Stock inicial",
+    "valor": 704000,
+    "fecha": "2025-07-31T19:48:53.170Z"
+  }
+]

@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": 1753991333170,
+    "codigo": "VHVIP",
+    "nombre": "Vital Honey VIP",
+    "categoria": "Otros",
+    "precioCosto": 88000,
+    "precioVenta": 120000,
+    "stock": 8,
+    "stockMinimo": 2,
+    "unidadMedida": "unidad",
+    "fechaCreacion": "2025-07-31T19:48:53.170Z",
+    "activo": true
+  }
+]

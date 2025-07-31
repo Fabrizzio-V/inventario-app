@@ -199,6 +199,14 @@
             gap: 15px;
         }
 
+        /* Nueva clase para el grid de productos en venta */
+        .form-row-venta {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 10px;
+            align-items: end;
+        }
+
         button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -471,12 +479,24 @@
         .tipo-compra { background: #dbeafe; color: #1e40af; }
         .tipo-ajuste { background: #fef3c7; color: #92400e; }
 
+        /* Estilo para el precio modificado */
+        .precio-modificado {
+            background: #fef3c7 !important;
+            border-color: #f59e0b !important;
+        }
+
+        .precio-original {
+            font-size: 12px;
+            color: #666;
+            text-decoration: line-through;
+        }
+
         @media (max-width: 768px) {
             .tab-navigation {
                 flex-direction: column;
             }
             
-            .form-row, .form-row-3 {
+            .form-row, .form-row-3, .form-row-venta {
                 grid-template-columns: 1fr;
             }
             
@@ -782,16 +802,17 @@
                                 <label>Productos a vender:</label>
                                 <div id="productosVenta">
                                     <div class="producto-venta-item">
-                                        <div class="form-row" style="margin-bottom: 10px;">
+                                        <div class="form-row-venta" style="margin-bottom: 10px;">
                                             <select class="producto-select" required>
                                                 <option value="">Seleccionar producto...</option>
                                             </select>
                                             <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                                            <input type="number" class="precio-input" step="100" placeholder="Precio ₲" required>
                                         </div>
                                         <div class="precio-info" style="display: none;">
                                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                                <span>Precio unitario:</span>
-                                                <span class="precio-unitario">₲ 0</span>
+                                                <span>Precio sugerido:</span>
+                                                <span class="precio-sugerido">₲ 0</span>
                                             </div>
                                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                                                 <span>Stock disponible:</span>
@@ -800,6 +821,10 @@
                                             <div style="display: flex; justify-content: space-between; font-weight: bold;">
                                                 <span>Subtotal:</span>
                                                 <span class="subtotal">₲ 0</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between; color: #10b981;">
+                                                <span>Ganancia:</span>
+                                                <span class="ganancia-item">₲ 0</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1580,17 +1605,18 @@
             const newItem = document.createElement('div');
             newItem.className = 'producto-venta-item';
             newItem.innerHTML = `
-                <div class="form-row" style="margin-bottom: 10px;">
+                <div class="form-row-venta" style="margin-bottom: 10px;">
                     <select class="producto-select" required>
                         <option value="">Seleccionar producto...</option>
                     </select>
                     <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                    <input type="number" class="precio-input" step="100" placeholder="Precio ₲" required>
                     <button type="button" onclick="eliminarProductoVenta(this)" class="btn-danger btn-small">✖</button>
                 </div>
                 <div class="precio-info" style="display: none;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Precio unitario:</span>
-                        <span class="precio-unitario">₲ 0</span>
+                        <span>Precio sugerido:</span>
+                        <span class="precio-sugerido">₲ 0</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                         <span>Stock disponible:</span>
@@ -1599,6 +1625,10 @@
                     <div style="display: flex; justify-content: space-between; font-weight: bold;">
                         <span>Subtotal:</span>
                         <span class="subtotal">₲ 0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; color: #10b981;">
+                        <span>Ganancia:</span>
+                        <span class="ganancia-item">₲ 0</span>
                     </div>
                 </div>
             `;
@@ -1609,9 +1639,11 @@
             // Agregar eventos
             const select = newItem.querySelector('.producto-select');
             const cantidadInput = newItem.querySelector('.cantidad-input');
+            const precioInput = newItem.querySelector('.precio-input');
             
             select.addEventListener('change', () => actualizarInfoProductoVenta(newItem));
             cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(newItem));
+            precioInput.addEventListener('input', () => actualizarInfoProductoVenta(newItem));
         }
 
         function eliminarProductoVenta(button) {
@@ -1640,20 +1672,43 @@
         function actualizarInfoProductoVenta(item) {
             const select = item.querySelector('.producto-select');
             const cantidadInput = item.querySelector('.cantidad-input');
+            const precioInput = item.querySelector('.precio-input');
             const infoDiv = item.querySelector('.precio-info');
             
             const productoId = parseInt(select.value);
             const cantidad = parseInt(cantidadInput.value) || 0;
+            let precioVenta = parseFloat(precioInput.value) || 0;
             
-            if (productoId && cantidad > 0) {
+            if (productoId) {
                 const producto = productos.find(p => p.id === productoId);
                 if (producto) {
-                    const subtotal = producto.precioVenta * cantidad;
+                    // Si no hay precio personalizado, usar el precio sugerido
+                    if (precioVenta === 0) {
+                        precioVenta = producto.precioVenta;
+                        precioInput.value = precioVenta;
+                    }
                     
                     infoDiv.style.display = 'block';
-                    item.querySelector('.precio-unitario').textContent = '₲ ' + producto.precioVenta.toLocaleString('es-PY');
+                    
+                    // Mostrar precio sugerido
+                    item.querySelector('.precio-sugerido').textContent = '₲ ' + producto.precioVenta.toLocaleString('es-PY');
                     item.querySelector('.stock-disponible').textContent = producto.stock;
-                    item.querySelector('.subtotal').textContent = '₲ ' + subtotal.toLocaleString('es-PY');
+                    
+                    // Calcular subtotal y ganancia
+                    if (cantidad > 0 && precioVenta > 0) {
+                        const subtotal = precioVenta * cantidad;
+                        const ganancia = (precioVenta - producto.precioCosto) * cantidad;
+                        
+                        item.querySelector('.subtotal').textContent = '₲ ' + subtotal.toLocaleString('es-PY');
+                        item.querySelector('.ganancia-item').textContent = '₲ ' + ganancia.toLocaleString('es-PY');
+                        
+                        // Marcar si el precio fue modificado
+                        if (precioVenta !== producto.precioVenta) {
+                            precioInput.classList.add('precio-modificado');
+                        } else {
+                            precioInput.classList.remove('precio-modificado');
+                        }
+                    }
                     
                     // Validar stock
                     if (cantidad > producto.stock) {
@@ -1665,6 +1720,8 @@
                 }
             } else {
                 infoDiv.style.display = 'none';
+                precioInput.value = '';
+                precioInput.classList.remove('precio-modificado');
             }
             
             calcularTotalVenta();
@@ -1678,15 +1735,17 @@
             items.forEach(item => {
                 const select = item.querySelector('.producto-select');
                 const cantidadInput = item.querySelector('.cantidad-input');
+                const precioInput = item.querySelector('.precio-input');
                 
                 const productoId = parseInt(select.value);
                 const cantidad = parseInt(cantidadInput.value) || 0;
+                const precioVenta = parseFloat(precioInput.value) || 0;
                 
-                if (productoId && cantidad > 0) {
+                if (productoId && cantidad > 0 && precioVenta > 0) {
                     const producto = productos.find(p => p.id === productoId);
                     if (producto) {
-                        const itemSubtotal = producto.precioVenta * cantidad;
-                        const itemGanancia = (producto.precioVenta - producto.precioCosto) * cantidad;
+                        const itemSubtotal = precioVenta * cantidad;
+                        const itemGanancia = (precioVenta - producto.precioCosto) * cantidad;
                         
                         subtotal += itemSubtotal;
                         gananciaTotal += itemGanancia;
@@ -1712,11 +1771,13 @@
             items.forEach(item => {
                 const select = item.querySelector('.producto-select');
                 const cantidadInput = item.querySelector('.cantidad-input');
+                const precioInput = item.querySelector('.precio-input');
                 
                 const productoId = parseInt(select.value);
                 const cantidad = parseInt(cantidadInput.value) || 0;
+                const precioVenta = parseFloat(precioInput.value) || 0;
                 
-                if (productoId && cantidad > 0) {
+                if (productoId && cantidad > 0 && precioVenta > 0) {
                     const producto = productos.find(p => p.id === productoId);
                     if (producto) {
                         if (cantidad > producto.stock) {
@@ -1729,9 +1790,10 @@
                             productoId: producto.id,
                             nombre: producto.nombre,
                             cantidad: cantidad,
-                            precioUnitario: producto.precioVenta,
+                            precioUnitario: precioVenta, // Usar el precio personalizado
                             costoUnitario: producto.precioCosto,
-                            subtotal: producto.precioVenta * cantidad
+                            subtotal: precioVenta * cantidad,
+                            precioOriginal: producto.precioVenta // Guardar el precio original para referencia
                         });
                     }
                 }
@@ -1798,16 +1860,17 @@
             const container = document.getElementById('productosVenta');
             container.innerHTML = `
                 <div class="producto-venta-item">
-                    <div class="form-row" style="margin-bottom: 10px;">
+                    <div class="form-row-venta" style="margin-bottom: 10px;">
                         <select class="producto-select" required>
                             <option value="">Seleccionar producto...</option>
                         </select>
                         <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                        <input type="number" class="precio-input" step="100" placeholder="Precio ₲" required>
                     </div>
                     <div class="precio-info" style="display: none;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>Precio unitario:</span>
-                            <span class="precio-unitario">₲ 0</span>
+                            <span>Precio sugerido:</span>
+                            <span class="precio-sugerido">₲ 0</span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                             <span>Stock disponible:</span>
@@ -1817,6 +1880,10 @@
                             <span>Subtotal:</span>
                             <span class="subtotal">₲ 0</span>
                         </div>
+                        <div style="display: flex; justify-content: space-between; color: #10b981;">
+                            <span>Ganancia:</span>
+                            <span class="ganancia-item">₲ 0</span>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1824,10 +1891,12 @@
             // Reconfigurar eventos
             const select = container.querySelector('.producto-select');
             const cantidadInput = container.querySelector('.cantidad-input');
+            const precioInput = container.querySelector('.precio-input');
             const item = container.querySelector('.producto-venta-item');
             
             select.addEventListener('change', () => actualizarInfoProductoVenta(item));
             cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
+            precioInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
             
             actualizarTodo();
             mostrarNotificacion(`Venta registrada por ₲ ${total.toLocaleString('es-PY')}`, 'success');
@@ -2412,7 +2481,11 @@
                 detalles += `PRODUCTOS:\n`;
                 
                 venta.productos.forEach(p => {
-                    detalles += `• ${p.nombre}: ${p.cantidad} x ₲${p.precioUnitario.toLocaleString('es-PY')} = ₲${p.subtotal.toLocaleString('es-PY')}\n`;
+                    let precioInfo = `₲${p.precioUnitario.toLocaleString('es-PY')}`;
+                    if (p.precioOriginal && p.precioUnitario !== p.precioOriginal) {
+                        precioInfo += ` (precio original: ₲${p.precioOriginal.toLocaleString('es-PY')})`;
+                    }
+                    detalles += `• ${p.nombre}: ${p.cantidad} x ${precioInfo} = ₲${p.subtotal.toLocaleString('es-PY')}\n`;
                 });
                 
                 detalles += `\nSubtotal: ₲${venta.subtotal.toLocaleString('es-PY')}\n`;
@@ -2499,11 +2572,13 @@
             setTimeout(() => {
                 const select = document.querySelector('.producto-select');
                 const cantidadInput = document.querySelector('.cantidad-input');
+                const precioInput = document.querySelector('.precio-input');
                 const item = document.querySelector('.producto-venta-item');
                 
-                if (select && cantidadInput && item) {
+                if (select && cantidadInput && precioInput && item) {
                     select.addEventListener('change', () => actualizarInfoProductoVenta(item));
                     cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
+                    precioInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
                 }
             }, 100);
         });

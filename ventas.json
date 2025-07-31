@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": 1753991901498,
+    "fecha": "2025-07-31T19:58:21.498Z",
+    "cliente": "Ariel Camio blanca",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 1,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 120000,
+    "descuento": 0,
+    "total": 120000,
+    "ganancia": 32000
+  }
+]

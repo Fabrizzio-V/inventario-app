@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛒 Sistema de Gestión de Inventario y Ventas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #333;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .connection-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .connected {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+        }
+
+        .disconnected {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+        }
+
+        .loading {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            color: #92400e;
+        }
+
+        .tab-navigation {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 5px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-number.productos { color: #3b82f6; }
+        .stat-number.ventas { color: #10b981; }
+        .stat-number.ganancias { color: #f59e0b; }
+        .stat-number.stock-bajo { color: #ef4444; }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1200px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success { background: linear-gradient(135deg, #10b981, #059669); }
+        .btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .btn-warning { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .btn-info { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+        .data-table {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            font-weight: 600;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        tr:hover { background: rgba(102, 126, 234, 0.05); }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .stock-alto { background: #dcfce7; color: #166534; }
+        .stock-medio { background: #fef3c7; color: #92400e; }
+        .stock-bajo { background: #fee2e2; color: #991b1b; }
+
+        .actions { display: flex; gap: 8px; }
+        .btn-small { padding: 8px 12px; font-size: 12px; border-radius: 6px; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close:hover { color: #333; }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success { background: linear-gradient(135deg, #10b981, #059669); }
+        .notification.error { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .hidden { display: none !important; }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .config-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .success-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .producto-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .precio-info {
+            background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+            border: 2px solid #0ea5e9;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .precio-info h4 {
+            color: #0369a1;
+            margin-bottom: 10px;
+        }
+
+        .alertas-stock {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .alertas-stock h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+
+        .alerta-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .top-productos {
+            display: grid;
+            gap: 10px;
+        }
+
+        .top-producto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+
+        .movimientos-recientes {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .movimiento-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .movimiento-item:last-child {
+            border-bottom: none;
+        }
+
+        .movimiento-tipo {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tipo-venta { background: #dcfce7; color: #166534; }
+        .tipo-compra { background: #dbeafe; color: #1e40af; }
+        .tipo-ajuste { background: #fef3c7; color: #92400e; }
+
+        @media (max-width: 768px) {
+            .tab-navigation {
+                flex-direction: column;
+            }
+            
+            .form-row, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-filters input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 Sistema de Gestión de Inventario y Ventas</h1>
+            <p>Control completo de tu negocio: inventario, ventas y ganancias</p>
+            <div style="margin-top: 15px; font-size: 14px; opacity: 0.8;">
+                Usuario: <span id="currentUser" style="font-weight: bold;">Administrador</span>
+            </div>
+            <div id="connectionStatus" class="connection-status disconnected">
+                🔴 Sin configurar - Configura GitHub para sincronización
+            </div>
+        </header>
+
+        <!-- Configuración GitHub -->
+        <div id="configSection" class="config-section">
+            <div class="success-badge">🆓 100% GRATUITO CON GITHUB PAGES</div>
+            <h3>🚀 Configuración GitHub Pages</h3>
+            <p style="margin-bottom: 20px;">
+                Conecta tu sistema con GitHub para sincronización automática entre dispositivos.
+            </p>
+            
+            <div style="background: rgba(255, 255, 255, 0.5); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h4>📋 Datos de tu Repositorio GitHub</h4>
+                <div class="form-row" style="margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label for="githubUsername">👤 Usuario de GitHub:</label>
+                        <input type="text" id="githubUsername" placeholder="tu-usuario-github">
+                    </div>
+                    <div class="form-group">
+                        <label for="githubRepo">📁 Nombre del Repositorio:</label>
+                        <input type="text" id="githubRepo" placeholder="inventario-app">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="githubToken">🔑 Personal Access Token:</label>
+                    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxxx">
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button onclick="conectarGitHub()" id="connectBtn">
+                    🔗 Conectar con GitHub
+                </button>
+                <button onclick="mostrarInstrucciones()" class="btn-success">
+                    📋 Ver Instrucciones
+                </button>
+                <button onclick="trabajarOffline()" class="btn-warning">
+                    💻 Trabajar Sin Conexión
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div id="mainContent">
+            <!-- Navegación por pestañas -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="mostrarTab('dashboard')">📊 Dashboard</button>
+                <button class="tab-btn" onclick="mostrarTab('productos')">📦 Productos</button>
+                <button class="tab-btn" onclick="mostrarTab('ventas')">💰 Ventas</button>
+                <button class="tab-btn" onclick="mostrarTab('inventario')">📋 Inventario</button>
+                <button class="tab-btn" onclick="mostrarTab('reportes')">📈 Reportes</button>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="dashboard" class="tab-content active">
+                <!-- Estadísticas principales -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number productos" id="totalProductos">0</div>
+                        <div>Total Productos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number ventas" id="ventasHoy">₲ 0</div>
+                        <div>Ventas Hoy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number ganancias" id="gananciasHoy">₲ 0</div>
+                        <div>Ganancias Hoy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number stock-bajo" id="stockBajo">0</div>
+                        <div>Stock Bajo</div>
+                    </div>
+                </div>
+
+                <!-- Alertas de stock bajo -->
+                <div id="alertasStock"></div>
+
+                <!-- Dashboard grid -->
+                <div class="main-grid">
+                    <!-- Productos más vendidos -->
+                    <div class="card">
+                        <h2>🏆 Productos Más Vendidos</h2>
+                        <div id="topProductos" class="top-productos">
+                            <p style="text-align: center; color: #666; padding: 20px;">No hay ventas registradas</p>
+                        </div>
+                    </div>
+
+                    <!-- Movimientos recientes -->
+                    <div class="card">
+                        <h2>📋 Movimientos Recientes</h2>
+                        <div id="movimientosRecientes" class="movimientos-recientes">
+                            <p style="text-align: center; color: #666; padding: 20px;">No hay movimientos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos -->
+            <div id="productos" class="tab-content">
+                <div class="main-grid">
+                    <!-- Agregar producto -->
+                    <div class="card">
+                        <h2>📦 Nuevo Producto</h2>
+                        <form id="productoForm">
+                            <div class="form-group">
+                                <label for="nombreProducto">Nombre del Producto:</label>
+                                <input type="text" id="nombreProducto" placeholder="Ej: Coca Cola 500ml" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="codigoProducto">Código/SKU:</label>
+                                    <input type="text" id="codigoProducto" placeholder="CC500" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="categoriaProducto">Categoría:</label>
+                                    <select id="categoriaProducto" required>
+                                        <option value="">Seleccionar...</option>
+                                        <option value="Bebidas">Bebidas</option>
+                                        <option value="Alimentos">Alimentos</option>
+                                        <option value="Limpieza">Limpieza</option>
+                                        <option value="Tecnología">Tecnología</option>
+                                        <option value="Ropa">Ropa</option>
+                                        <option value="Otros">Otros</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="precioCosto">Precio Costo (₲):</label>
+                                    <input type="number" id="precioCosto" step="100" placeholder="5000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="precioVenta">Precio Venta (₲):</label>
+                                    <input type="number" id="precioVenta" step="100" placeholder="7000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="stockInicial">Stock Inicial:</label>
+                                    <input type="number" id="stockInicial" min="0" placeholder="100" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="stockMinimo">Stock Mínimo:</label>
+                                    <input type="number" id="stockMinimo" min="0" placeholder="10" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="unidadMedida">Unidad de Medida:</label>
+                                    <select id="unidadMedida">
+                                        <option value="unidad">Unidad</option>
+                                        <option value="kg">Kilogramo</option>
+                                        <option value="litro">Litro</option>
+                                        <option value="metro">Metro</option>
+                                        <option value="caja">Caja</option>
+                                        <option value="paquete">Paquete</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="gananciasInfo" class="precio-info" style="display: none;">
+                                <h4>💰 Información de Ganancias</h4>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Ganancia por unidad:</span>
+                                    <strong id="gananciaPorUnidad">₲ 0</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Margen de ganancia:</span>
+                                    <strong id="margenGanancia">0%</strong>
+                                </div>
+                            </div>
+                            <button type="submit" style="width: 100%; margin-top: 20px;">
+                                📦 Agregar Producto
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Ajustar stock -->
+                    <div class="card">
+                        <h2>📋 Ajustar Stock</h2>
+                        <form id="ajusteStockForm">
+                            <div class="form-group">
+                                <label for="productoAjuste">Seleccionar Producto:</label>
+                                <select id="productoAjuste" required>
+                                    <option value="">Seleccionar producto...</option>
+                                </select>
+                            </div>
+                            <div id="infoProductoAjuste" style="display: none;">
+                                <div style="background: #f8fafc; padding: 15px; border-radius: 10px; margin: 15px 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                        <span>Stock actual:</span>
+                                        <strong id="stockActualAjuste">0</strong>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Precio de venta:</span>
+                                        <strong id="precioVentaAjuste">₲ 0</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tipoAjuste">Tipo de Ajuste:</label>
+                                    <select id="tipoAjuste" required>
+                                        <option value="">Seleccionar...</option>
+                                        <option value="entrada">Entrada (Compra/Reposición)</option>
+                                        <option value="salida">Salida (Pérdida/Devolución)</option>
+                                        <option value="ajuste">Ajuste de Inventario</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cantidadAjuste">Cantidad:</label>
+                                    <input type="number" id="cantidadAjuste" min="1" placeholder="10" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="motivoAjuste">Motivo:</label>
+                                <textarea id="motivoAjuste" placeholder="Describe el motivo del ajuste..." rows="3"></textarea>
+                            </div>
+                            <button type="submit" style="width: 100%; margin-top: 15px;" class="btn-warning">
+                                📋 Realizar Ajuste
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista de productos -->
+                <div class="data-table">
+                    <h2>📦 Lista de Productos</h2>
+                    <div class="search-filters">
+                        <input type="text" id="searchProductos" placeholder="🔍 Buscar productos..." style="width: 300px;" onkeyup="filtrarProductos()">
+                        <select id="filtroCategoria" onchange="filtrarProductos()">
+                            <option value="">Todas las categorías</option>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                        <select id="filtroStock" onchange="filtrarProductos()">
+                            <option value="">Todo el stock</option>
+                            <option value="bajo">Stock bajo</option>
+                            <option value="alto">Stock alto</option>
+                        </select>
+                        <button onclick="sincronizarDatos()" class="btn-small btn-warning" id="syncBtn">
+                            🔄 Sincronizar
+                        </button>
+                    </div>
+                    <table id="productosTable">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio Costo</th>
+                                <th>Precio Venta</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Ganancia Unit.</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productosBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ventas -->
+            <div id="ventas" class="tab-content">
+                <div class="main-grid">
+                    <!-- Registrar venta -->
+                    <div class="card">
+                        <h2>💰 Nueva Venta</h2>
+                        <form id="ventaForm">
+                            <div class="form-group">
+                                <label for="clienteVenta">Cliente (Opcional):</label>
+                                <input type="text" id="clienteVenta" placeholder="Nombre del cliente">
+                            </div>
+                            <div class="form-group">
+                                <label>Productos a vender:</label>
+                                <div id="productosVenta">
+                                    <div class="producto-venta-item">
+                                        <div class="form-row" style="margin-bottom: 10px;">
+                                            <select class="producto-select" required>
+                                                <option value="">Seleccionar producto...</option>
+                                            </select>
+                                            <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                                        </div>
+                                        <div class="precio-info" style="display: none;">
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                                <span>Precio unitario:</span>
+                                                <span class="precio-unitario">₲ 0</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                                <span>Stock disponible:</span>
+                                                <span class="stock-disponible">0</span>
+                                            </div>
+                                            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                                                <span>Subtotal:</span>
+                                                <span class="subtotal">₲ 0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="agregarProductoVenta()" class="btn-success btn-small" style="margin-top: 10px;">
+                                    ➕ Agregar Producto
+                                </button>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="metodoPago">Método de Pago:</label>
+                                    <select id="metodoPago" required>
+                                        <option value="efectivo">Efectivo</option>
+                                        <option value="tarjeta">Tarjeta</option>
+                                        <option value="transferencia">Transferencia</option>
+                                        <option value="credito">Crédito</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="descuentoVenta">Descuento (₲):</label>
+                                    <input type="number" id="descuentoVenta" min="0" placeholder="0" value="0">
+                                </div>
+                            </div>
+                            <div id="resumenVenta" class="precio-info">
+                                <h4>💰 Resumen de Venta</h4>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <span>Subtotal:</span>
+                                    <strong id="subtotalVenta">₲ 0</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <span>Descuento:</span>
+                                    <strong id="descuentoTotalVenta">₲ 0</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 1.2em; border-top: 2px solid #0ea5e9; padding-top: 10px; margin-top: 10px;">
+                                    <span>TOTAL:</span>
+                                    <strong id="totalVenta">₲ 0</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 10px; color: #10b981;">
+                                    <span>Ganancia estimada:</span>
+                                    <strong id="gananciaVenta">₲ 0</strong>
+                                </div>
+                            </div>
+                            <button type="submit" style="width: 100%; margin-top: 20px;" class="btn-success">
+                                💰 Registrar Venta
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Estadísticas de ventas -->
+                    <div class="card">
+                        <h2>📊 Estadísticas de Ventas</h2>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border-left: 4px solid #10b981;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Ventas del día:</span>
+                                    <strong id="ventasDelDia">₲ 0</strong>
+                                </div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Ventas del mes:</span>
+                                    <strong id="ventasDelMes">₲ 0</strong>
+                                </div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Ganancias del día:</span>
+                                    <strong id="gananciasDelDia">₲ 0</strong>
+                                </div>
+                            </div>
+                            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border-left: 4px solid #ef4444;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Número de ventas hoy:</span>
+                                    <strong id="numeroVentasHoy">0</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <h3 style="margin-bottom: 15px;">🎯 Metas del Día</h3>
+                            <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #e0e0e0;">
+                                <label for="metaDiaria">Meta de ventas diaria (₲):</label>
+                                <input type="number" id="metaDiaria" placeholder="100000" style="margin-bottom: 10px;">
+                                <button onclick="establecerMeta()" class="btn-small">Establecer Meta</button>
+                                <div id="progresoMeta" style="margin-top: 15px; display: none;">
+                                    <div style="background: #e0e0e0; border-radius: 10px; height: 20px; overflow: hidden;">
+                                        <div id="barraProgreso" style="background: linear-gradient(135deg, #10b981, #059669); height: 100%; width: 0%; transition: width 0.3s;"></div>
+                                    </div>
+                                    <div style="text-align: center; margin-top: 10px;">
+                                        <span id="porcentajeMeta">0%</span> de la meta diaria
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historial de ventas -->
+                <div class="data-table">
+                    <h2>💰 Historial de Ventas</h2>
+                    <div class="search-filters">
+                        <input type="text" id="searchVentas" placeholder="🔍 Buscar ventas..." style="width: 300px;" onkeyup="filtrarVentas()">
+                        <select id="filtroFecha" onchange="filtrarVentas()">
+                            <option value="">Todas las fechas</option>
+                            <option value="hoy">Hoy</option>
+                            <option value="semana">Esta semana</option>
+                            <option value="mes">Este mes</option>
+                        </select>
+                        <select id="filtroMetodo" onchange="filtrarVentas()">
+                            <option value="">Todos los métodos</option>
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                            <option value="transferencia">Transferencia</option>
+                            <option value="credito">Crédito</option>
+                        </select>
+                    </div>
+                    <table id="ventasTable">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Productos</th>
+                                <th>Método Pago</th>
+                                <th>Subtotal</th>
+                                <th>Descuento</th>
+                                <th>Total</th>
+                                <th>Ganancia</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ventasBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Inventario -->
+            <div id="inventario" class="tab-content">
+                <div class="data-table">
+                    <h2>📋 Control de Inventario</h2>
+                    <div class="search-filters">
+                        <input type="text" id="searchInventario" placeholder="🔍 Buscar en inventario..." style="width: 300px;" onkeyup="filtrarInventario()">
+                        <select id="filtroMovimiento" onchange="filtrarInventario()">
+                            <option value="">Todos los movimientos</option>
+                            <option value="venta">Ventas</option>
+                            <option value="entrada">Entradas</option>
+                            <option value="salida">Salidas</option>
+                            <option value="ajuste">Ajustes</option>
+                        </select>
+                        <input type="date" id="filtroFechaInventario" onchange="filtrarInventario()">
+                    </div>
+                    <table id="inventarioTable">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Producto</th>
+                                <th>Tipo</th>
+                                <th>Cantidad</th>
+                                <th>Stock Anterior</th>
+                                <th>Stock Nuevo</th>
+                                <th>Motivo/Cliente</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventarioBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Reportes -->
+            <div id="reportes" class="tab-content">
+                <div class="stats-grid">
+                    <div class="card">
+                        <h2>📊 Resumen Financiero</h2>
+                        <div id="resumenFinanciero">
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Inversión total en inventario:</span>
+                                        <strong id="inversionTotal">₲ 0</strong>
+                                    </div>
+                                </div>
+                                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Valor actual del inventario:</span>
+                                        <strong id="valorInventario">₲ 0</strong>
+                                    </div>
+                                </div>
+                                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Ganancias totales:</span>
+                                        <strong id="gananciasTotales" style="color: #10b981;">₲ 0</strong>
+                                    </div>
+                                </div>
+                                <div style="background: #f8fafc; padding: 15px; border-radius: 10px;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>ROI (Retorno de inversión):</span>
+                                        <strong id="roi" style="color: #3b82f6;">0%</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>🏆 Productos Más Rentables</h2>
+                        <div id="productosRentables">
+                            <p style="text-align: center; color: #666; padding: 20px;">No hay datos suficientes</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>⚠️ Alertas y Recomendaciones</h2>
+                        <div id="alertasRecomendaciones">
+                            <div style="display: grid; gap: 10px;">
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                                    <strong>💡 Tip:</strong> Revisa productos con stock bajo para reposición.
+                                </div>
+                                <div style="background: #dbeafe; padding: 15px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                                    <strong>📊 Análisis:</strong> Los reportes se actualizan con cada venta.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h2>📅 Ventas por Período</h2>
+                        <div style="margin-bottom: 20px;">
+                            <div class="form-row">
+                                <div>
+                                    <label>Fecha desde:</label>
+                                    <input type="date" id="fechaDesde">
+                                </div>
+                                <div>
+                                    <label>Fecha hasta:</label>
+                                    <input type="date" id="fechaHasta">
+                                </div>
+                            </div>
+                            <button onclick="generarReportePeriodo()" class="btn-info" style="margin-top: 10px;">
+                                📊 Generar Reporte
+                            </button>
+                        </div>
+                        <div id="reportePeriodo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal para editar producto -->
+    <div id="editProductoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('editProductoModal')">&times;</span>
+            <h2>✏️ Editar Producto</h2>
+            <form id="editProductoForm">
+                <input type="hidden" id="editProductoId">
+                <!-- Campos similares al formulario de agregar producto -->
+                <div class="form-group">
+                    <label for="editNombreProducto">Nombre del Producto:</label>
+                    <input type="text" id="editNombreProducto" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editCodigoProducto">Código/SKU:</label>
+                        <input type="text" id="editCodigoProducto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategoriaProducto">Categoría:</label>
+                        <select id="editCategoriaProducto" required>
+                            <option value="Bebidas">Bebidas</option>
+                            <option value="Alimentos">Alimentos</option>
+                            <option value="Limpieza">Limpieza</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Ropa">Ropa</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editPrecioCosto">Precio Costo (₲):</label>
+                        <input type="number" id="editPrecioCosto" step="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPrecioVenta">Precio Venta (₲):</label>
+                        <input type="number" id="editPrecioVenta" step="100" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editStockMinimo">Stock Mínimo:</label>
+                    <input type="number" id="editStockMinimo" min="0" required>
+                </div>
+                <button type="submit" style="width: 100%;">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de instrucciones -->
+    <div id="instructionsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal('instructionsModal')">&times;</span>
+            <h2>📋 Instrucciones - GitHub Pages</h2>
+            <div style="max-height: 400px; overflow-y: auto;">
+                <p style="margin-bottom: 20px;">Sigue exactamente los mismos pasos que en el sistema de préstamos, pero crea un repositorio llamado <strong>"inventario-app"</strong> y usa <strong>este código HTML</strong>.</p>
+                
+                <div style="background: #dcfce7; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                    <strong>🔗 Archivos necesarios:</strong><br>
+                    • <code>index.html</code> - Este código completo<br>
+                    • <code>productos.json</code> - Contenido: <code>[]</code><br>
+                    • <code>ventas.json</code> - Contenido: <code>[]</code><br>
+                    • <code>movimientos.json</code> - Contenido: <code>[]</code>
+                </div>
+
+                <div style="background: #fef3c7; padding: 15px; border-radius: 10px;">
+                    <strong>⚡ Tip rápido:</strong> Tu app estará en <code>https://tu-usuario.github.io/inventario-app/</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let productos = [];
+        let ventas = [];
+        let movimientos = [];
+        let isConnected = false;
+        let githubConfig = {
+            username: '',
+            repo: '',
+            token: ''
+        };
+
+        // Datos para la aplicación
+        let metaDiaria = 0;
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarConfiguracion();
+            inicializarFormularios();
+            actualizarTodo();
+            calcularGananciasProducto();
+        });
+
+        // === FUNCIONES DE GITHUB ===
+        function cargarConfiguracion() {
+            const savedConfig = localStorage.getItem('inventarioGithubConfig');
+            if (savedConfig) {
+                githubConfig = JSON.parse(savedConfig);
+                document.getElementById('githubUsername').value = githubConfig.username || '';
+                document.getElementById('githubRepo').value = githubConfig.repo || '';
+                document.getElementById('githubToken').value = githubConfig.token || '';
+                
+                if (githubConfig.username && githubConfig.repo && githubConfig.token) {
+                    conectarGitHub();
+                }
+            }
+
+            // Cargar datos locales como fallback
+            productos = JSON.parse(localStorage.getItem('productos')) || [];
+            ventas = JSON.parse(localStorage.getItem('ventas')) || [];
+            movimientos = JSON.parse(localStorage.getItem('movimientos')) || [];
+            metaDiaria = parseFloat(localStorage.getItem('metaDiaria')) || 0;
+        }
+
+        function guardarConfiguracion() {
+            localStorage.setItem('inventarioGithubConfig', JSON.stringify(githubConfig));
+        }
+
+        async function conectarGitHub() {
+            const username = document.getElementById('githubUsername').value.trim();
+            const repo = document.getElementById('githubRepo').value.trim();
+            const token = document.getElementById('githubToken').value.trim();
+
+            if (!username || !repo || !token) {
+                mostrarNotificacion('Por favor completa todos los campos de GitHub', 'error');
+                return;
+            }
+
+            githubConfig = { username, repo, token };
+            guardarConfiguracion();
+
+            actualizarEstadoConexion('loading', 'Conectando con GitHub...');
+
+            try {
+                await verificarRepositorio();
+                await cargarDatosGitHub();
+                isConnected = true;
+                actualizarEstadoConexion('connected', '🟢 Conectado a GitHub Pages');
+                document.getElementById('configSection').classList.add('hidden');
+                actualizarTodo();
+                mostrarNotificacion('¡Conectado exitosamente a GitHub!', 'success');
+            } catch (error) {
+                console.error('Error al conectar:', error);
+                isConnected = false;
+                actualizarEstadoConexion('disconnected', '🔴 Error: ' + error.message);
+                mostrarNotificacion('Error: ' + error.message, 'error');
+            }
+        }
+
+        async function verificarRepositorio() {
+            const response = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}`, {
+                headers: {
+                    'Authorization': `token ${githubConfig.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error('Repositorio no encontrado');
+                } else if (response.status === 401) {
+                    throw new Error('Token inválido');
+                } else {
+                    throw new Error(`Error ${response.status}`);
+                }
+            }
+        }
+
+        async function cargarDatosGitHub() {
+            try {
+                // Cargar productos
+                productos = await cargarArchivoGitHub('productos.json') || [];
+                // Cargar ventas
+                ventas = await cargarArchivoGitHub('ventas.json') || [];
+                // Cargar movimientos
+                movimientos = await cargarArchivoGitHub('movimientos.json') || [];
+            } catch (error) {
+                console.error('Error al cargar datos:', error);
+            }
+        }
+
+        async function cargarArchivoGitHub(filename) {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${filename}`, {
+                    headers: {
+                        'Authorization': `token ${githubConfig.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const content = atob(data.content);
+                    return JSON.parse(content);
+                } else if (response.status === 404) {
+                    // Archivo no existe, crear uno vacío
+                    await crearArchivoGitHub(filename, []);
+                    return [];
+                }
+            } catch (error) {
+                console.error(`Error al cargar ${filename}:`, error);
+                return [];
+            }
+        }
+
+        async function crearArchivoGitHub(filename, data) {
+            const content = btoa(JSON.stringify(data));
+            const response = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${filename}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${githubConfig.token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: `Create ${filename}`,
+                    content: content
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error al crear ${filename}`);
+            }
+        }
+
+        async function guardarArchivoGitHub(filename, data) {
+            if (!isConnected) {
+                guardarDatosLocal();
+                return;
+            }
+
+            try {
+                // Obtener SHA del archivo actual
+                const getResponse = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${filename}`, {
+                    headers: {
+                        'Authorization': `token ${githubConfig.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                let sha = null;
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                }
+
+                // Actualizar archivo
+                const content = btoa(JSON.stringify(data, null, 2));
+                const updateData = {
+                    message: `Update ${filename} - ${new Date().toISOString()}`,
+                    content: content
+                };
+
+                if (sha) {
+                    updateData.sha = sha;
+                }
+
+                const updateResponse = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${filename}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${githubConfig.token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updateData)
+                });
+
+                if (!updateResponse.ok) {
+                    throw new Error(`Error al guardar ${filename}`);
+                }
+
+                guardarDatosLocal();
+            } catch (error) {
+                console.error(`Error al guardar ${filename}:`, error);
+                guardarDatosLocal();
+            }
+        }
+
+        function guardarDatosLocal() {
+            localStorage.setItem('productos', JSON.stringify(productos));
+            localStorage.setItem('ventas', JSON.stringify(ventas));
+            localStorage.setItem('movimientos', JSON.stringify(movimientos));
+        }
+
+        async function sincronizarDatos() {
+            const syncBtn = document.getElementById('syncBtn');
+            const originalText = syncBtn.innerHTML;
+            syncBtn.innerHTML = '<span class="loading-spinner"></span>Sincronizando...';
+            syncBtn.disabled = true;
+
+            try {
+                if (isConnected) {
+                    await cargarDatosGitHub();
+                    mostrarNotificacion('Datos sincronizados desde GitHub', 'success');
+                } else {
+                    mostrarNotificacion('Sincronización local completada', 'success');
+                }
+                actualizarTodo();
+            } catch (error) {
+                console.error('Error al sincronizar:', error);
+                mostrarNotificacion('Error al sincronizar: ' + error.message, 'error');
+            } finally {
+                syncBtn.innerHTML = originalText;
+                syncBtn.disabled = false;
+            }
+        }
+
+        function trabajarOffline() {
+            isConnected = false;
+            document.getElementById('configSection').classList.add('hidden');
+            document.getElementById('connectionStatus').className = 'connection-status connected';
+            document.getElementById('connectionStatus').textContent = '💻 Modo Local (Sin conexión)';
+            mostrarNotificacion('Trabajando en modo local', 'success');
+        }
+
+        function actualizarEstadoConexion(estado, mensaje) {
+            const statusElement = document.getElementById('connectionStatus');
+            statusElement.className = `connection-status ${estado}`;
+            statusElement.textContent = mensaje;
+        }
+
+        function mostrarInstrucciones() {
+            document.getElementById('instructionsModal').style.display = 'flex';
+        }
+
+        // === FUNCIONES DE LA APLICACIÓN ===
+
+        function mostrarTab(tabName) {
+            // Ocultar todas las pestañas
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Desactivar todos los botones
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            // Mostrar pestaña seleccionada
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Actualizar contenido específico según la pestaña
+            if (tabName === 'dashboard') {
+                actualizarDashboard();
+            } else if (tabName === 'productos') {
+                actualizarSelectoresProductos();
+                renderizarTablaProductos();
+            } else if (tabName === 'ventas') {
+                actualizarSelectoresProductos();
+                renderizarTablaVentas();
+                actualizarEstadisticasVentas();
+            } else if (tabName === 'inventario') {
+                renderizarTablaInventario();
+            } else if (tabName === 'reportes') {
+                actualizarReportes();
+            }
+        }
+
+        function inicializarFormularios() {
+            // Formulario de productos
+            document.getElementById('productoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                agregarProducto();
+            });
+
+            // Formulario de ajuste de stock
+            document.getElementById('ajusteStockForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                realizarAjusteStock();
+            });
+
+            // Formulario de ventas
+            document.getElementById('ventaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                registrarVenta();
+            });
+
+            // Formulario de editar producto
+            document.getElementById('editProductoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                actualizarProducto();
+            });
+
+            // Eventos para calcular ganancias en tiempo real
+            document.getElementById('precioCosto').addEventListener('input', calcularGananciasProducto);
+            document.getElementById('precioVenta').addEventListener('input', calcularGananciasProducto);
+
+            // Evento para mostrar info del producto en ajuste
+            document.getElementById('productoAjuste').addEventListener('change', mostrarInfoProductoAjuste);
+
+            // Eventos para calcular total de venta
+            document.getElementById('descuentoVenta').addEventListener('input', calcularTotalVenta);
+        }
+
+        function calcularGananciasProducto() {
+            const costo = parseFloat(document.getElementById('precioCosto').value) || 0;
+            const venta = parseFloat(document.getElementById('precioVenta').value) || 0;
+
+            if (costo > 0 && venta > 0) {
+                const ganancia = venta - costo;
+                const margen = ((ganancia / venta) * 100).toFixed(1);
+
+                document.getElementById('gananciasInfo').style.display = 'block';
+                document.getElementById('gananciaPorUnidad').textContent = '₲ ' + ganancia.toLocaleString('es-PY');
+                document.getElementById('margenGanancia').textContent = margen + '%';
+            } else {
+                document.getElementById('gananciasInfo').style.display = 'none';
+            }
+        }
+
+        async function agregarProducto() {
+            const producto = {
+                id: Date.now(),
+                codigo: document.getElementById('codigoProducto').value,
+                nombre: document.getElementById('nombreProducto').value,
+                categoria: document.getElementById('categoriaProducto').value,
+                precioCosto: parseFloat(document.getElementById('precioCosto').value),
+                precioVenta: parseFloat(document.getElementById('precioVenta').value),
+                stock: parseInt(document.getElementById('stockInicial').value),
+                stockMinimo: parseInt(document.getElementById('stockMinimo').value),
+                unidadMedida: document.getElementById('unidadMedida').value,
+                fechaCreacion: new Date().toISOString(),
+                activo: true
+            };
+
+            // Verificar que no exista el código
+            if (productos.find(p => p.codigo === producto.codigo && p.activo)) {
+                mostrarNotificacion('Ya existe un producto con ese código', 'error');
+                return;
+            }
+
+            productos.push(producto);
+
+            // Registrar movimiento inicial
+            const movimiento = {
+                id: Date.now(),
+                productoId: producto.id,
+                productoNombre: producto.nombre,
+                tipo: 'entrada',
+                cantidad: producto.stock,
+                stockAnterior: 0,
+                stockNuevo: producto.stock,
+                motivo: 'Stock inicial',
+                valor: producto.stock * producto.precioCosto,
+                fecha: new Date().toISOString()
+            };
+
+            movimientos.push(movimiento);
+
+            await guardarArchivoGitHub('productos.json', productos);
+            await guardarArchivoGitHub('movimientos.json', movimientos);
+
+            document.getElementById('productoForm').reset();
+            document.getElementById('gananciasInfo').style.display = 'none';
+            
+            actualizarTodo();
+            mostrarNotificacion(`Producto ${producto.nombre} agregado exitosamente`, 'success');
+        }
+
+        function mostrarInfoProductoAjuste() {
+            const productoId = parseInt(document.getElementById('productoAjuste').value);
+            const producto = productos.find(p => p.id === productoId);
+
+            if (producto) {
+                document.getElementById('infoProductoAjuste').style.display = 'block';
+                document.getElementById('stockActualAjuste').textContent = producto.stock;
+                document.getElementById('precioVentaAjuste').textContent = '₲ ' + producto.precioVenta.toLocaleString('es-PY');
+            } else {
+                document.getElementById('infoProductoAjuste').style.display = 'none';
+            }
+        }
+
+        async function realizarAjusteStock() {
+            const productoId = parseInt(document.getElementById('productoAjuste').value);
+            const tipo = document.getElementById('tipoAjuste').value;
+            const cantidad = parseInt(document.getElementById('cantidadAjuste').value);
+            const motivo = document.getElementById('motivoAjuste').value;
+
+            const producto = productos.find(p => p.id === productoId);
+            if (!producto) {
+                mostrarNotificacion('Producto no encontrado', 'error');
+                return;
+            }
+
+            const stockAnterior = producto.stock;
+            let stockNuevo = stockAnterior;
+
+            if (tipo === 'entrada') {
+                stockNuevo = stockAnterior + cantidad;
+            } else if (tipo === 'salida') {
+                stockNuevo = Math.max(0, stockAnterior - cantidad);
+            } else if (tipo === 'ajuste') {
+                stockNuevo = cantidad;
+            }
+
+            // Actualizar stock del producto
+            producto.stock = stockNuevo;
+
+            // Registrar movimiento
+            const movimiento = {
+                id: Date.now(),
+                productoId: producto.id,
+                productoNombre: producto.nombre,
+                tipo: tipo,
+                cantidad: Math.abs(stockNuevo - stockAnterior),
+                stockAnterior: stockAnterior,
+                stockNuevo: stockNuevo,
+                motivo: motivo || tipo,
+                valor: Math.abs(stockNuevo - stockAnterior) * producto.precioCosto,
+                fecha: new Date().toISOString()
+            };
+
+            movimientos.push(movimiento);
+
+            await guardarArchivoGitHub('productos.json', productos);
+            await guardarArchivoGitHub('movimientos.json', movimientos);
+
+            document.getElementById('ajusteStockForm').reset();
+            document.getElementById('infoProductoAjuste').style.display = 'none';
+            
+            actualizarTodo();
+            mostrarNotificacion(`Stock de ${producto.nombre} actualizado`, 'success');
+        }
+
+        function agregarProductoVenta() {
+            const container = document.getElementById('productosVenta');
+            const newItem = document.createElement('div');
+            newItem.className = 'producto-venta-item';
+            newItem.innerHTML = `
+                <div class="form-row" style="margin-bottom: 10px;">
+                    <select class="producto-select" required>
+                        <option value="">Seleccionar producto...</option>
+                    </select>
+                    <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                    <button type="button" onclick="eliminarProductoVenta(this)" class="btn-danger btn-small">✖</button>
+                </div>
+                <div class="precio-info" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Precio unitario:</span>
+                        <span class="precio-unitario">₲ 0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Stock disponible:</span>
+                        <span class="stock-disponible">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Subtotal:</span>
+                        <span class="subtotal">₲ 0</span>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(newItem);
+            actualizarSelectoresProductosVenta();
+            
+            // Agregar eventos
+            const select = newItem.querySelector('.producto-select');
+            const cantidadInput = newItem.querySelector('.cantidad-input');
+            
+            select.addEventListener('change', () => actualizarInfoProductoVenta(newItem));
+            cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(newItem));
+        }
+
+        function eliminarProductoVenta(button) {
+            const item = button.closest('.producto-venta-item');
+            item.remove();
+            calcularTotalVenta();
+        }
+
+        function actualizarSelectoresProductosVenta() {
+            const selects = document.querySelectorAll('.producto-select');
+            selects.forEach(select => {
+                const currentValue = select.value;
+                select.innerHTML = '<option value="">Seleccionar producto...</option>';
+                
+                productos.filter(p => p.activo && p.stock > 0).forEach(producto => {
+                    const option = document.createElement('option');
+                    option.value = producto.id;
+                    option.textContent = `${producto.nombre} (Stock: ${producto.stock})`;
+                    select.appendChild(option);
+                });
+                
+                select.value = currentValue;
+            });
+        }
+
+        function actualizarInfoProductoVenta(item) {
+            const select = item.querySelector('.producto-select');
+            const cantidadInput = item.querySelector('.cantidad-input');
+            const infoDiv = item.querySelector('.precio-info');
+            
+            const productoId = parseInt(select.value);
+            const cantidad = parseInt(cantidadInput.value) || 0;
+            
+            if (productoId && cantidad > 0) {
+                const producto = productos.find(p => p.id === productoId);
+                if (producto) {
+                    const subtotal = producto.precioVenta * cantidad;
+                    
+                    infoDiv.style.display = 'block';
+                    item.querySelector('.precio-unitario').textContent = '₲ ' + producto.precioVenta.toLocaleString('es-PY');
+                    item.querySelector('.stock-disponible').textContent = producto.stock;
+                    item.querySelector('.subtotal').textContent = '₲ ' + subtotal.toLocaleString('es-PY');
+                    
+                    // Validar stock
+                    if (cantidad > producto.stock) {
+                        cantidadInput.style.borderColor = '#ef4444';
+                        mostrarNotificacion(`Stock insuficiente. Disponible: ${producto.stock}`, 'error');
+                    } else {
+                        cantidadInput.style.borderColor = '#e0e0e0';
+                    }
+                }
+            } else {
+                infoDiv.style.display = 'none';
+            }
+            
+            calcularTotalVenta();
+        }
+
+        function calcularTotalVenta() {
+            let subtotal = 0;
+            let gananciaTotal = 0;
+            
+            const items = document.querySelectorAll('.producto-venta-item');
+            items.forEach(item => {
+                const select = item.querySelector('.producto-select');
+                const cantidadInput = item.querySelector('.cantidad-input');
+                
+                const productoId = parseInt(select.value);
+                const cantidad = parseInt(cantidadInput.value) || 0;
+                
+                if (productoId && cantidad > 0) {
+                    const producto = productos.find(p => p.id === productoId);
+                    if (producto) {
+                        const itemSubtotal = producto.precioVenta * cantidad;
+                        const itemGanancia = (producto.precioVenta - producto.precioCosto) * cantidad;
+                        
+                        subtotal += itemSubtotal;
+                        gananciaTotal += itemGanancia;
+                    }
+                }
+            });
+            
+            const descuento = parseFloat(document.getElementById('descuentoVenta').value) || 0;
+            const total = subtotal - descuento;
+            
+            document.getElementById('subtotalVenta').textContent = '₲ ' + subtotal.toLocaleString('es-PY');
+            document.getElementById('descuentoTotalVenta').textContent = '₲ ' + descuento.toLocaleString('es-PY');
+            document.getElementById('totalVenta').textContent = '₲ ' + total.toLocaleString('es-PY');
+            document.getElementById('gananciaVenta').textContent = '₲ ' + gananciaTotal.toLocaleString('es-PY');
+        }
+
+        async function registrarVenta() {
+            const items = document.querySelectorAll('.producto-venta-item');
+            const productosVenta = [];
+            let hayError = false;
+            
+            // Validar y recopilar productos
+            items.forEach(item => {
+                const select = item.querySelector('.producto-select');
+                const cantidadInput = item.querySelector('.cantidad-input');
+                
+                const productoId = parseInt(select.value);
+                const cantidad = parseInt(cantidadInput.value) || 0;
+                
+                if (productoId && cantidad > 0) {
+                    const producto = productos.find(p => p.id === productoId);
+                    if (producto) {
+                        if (cantidad > producto.stock) {
+                            mostrarNotificacion(`Stock insuficiente para ${producto.nombre}`, 'error');
+                            hayError = true;
+                            return;
+                        }
+                        
+                        productosVenta.push({
+                            productoId: producto.id,
+                            nombre: producto.nombre,
+                            cantidad: cantidad,
+                            precioUnitario: producto.precioVenta,
+                            costoUnitario: producto.precioCosto,
+                            subtotal: producto.precioVenta * cantidad
+                        });
+                    }
+                }
+            });
+            
+            if (hayError || productosVenta.length === 0) {
+                if (productosVenta.length === 0) {
+                    mostrarNotificacion('Agrega al menos un producto a la venta', 'error');
+                }
+                return;
+            }
+            
+            const subtotal = productosVenta.reduce((sum, p) => sum + p.subtotal, 0);
+            const descuento = parseFloat(document.getElementById('descuentoVenta').value) || 0;
+            const total = subtotal - descuento;
+            const gananciaTotal = productosVenta.reduce((sum, p) => sum + ((p.precioUnitario - p.costoUnitario) * p.cantidad), 0);
+            
+            // Crear venta
+            const venta = {
+                id: Date.now(),
+                fecha: new Date().toISOString(),
+                cliente: document.getElementById('clienteVenta').value || 'Cliente general',
+                productos: productosVenta,
+                metodoPago: document.getElementById('metodoPago').value,
+                subtotal: subtotal,
+                descuento: descuento,
+                total: total,
+                ganancia: gananciaTotal
+            };
+            
+            ventas.push(venta);
+            
+            // Actualizar stock y crear movimientos
+            productosVenta.forEach(pv => {
+                const producto = productos.find(p => p.id === pv.productoId);
+                const stockAnterior = producto.stock;
+                producto.stock -= pv.cantidad;
+                
+                // Crear movimiento
+                const movimiento = {
+                    id: Date.now() + Math.random(),
+                    productoId: producto.id,
+                    productoNombre: producto.nombre,
+                    tipo: 'venta',
+                    cantidad: pv.cantidad,
+                    stockAnterior: stockAnterior,
+                    stockNuevo: producto.stock,
+                    motivo: `Venta - ${venta.cliente}`,
+                    valor: pv.subtotal,
+                    fecha: new Date().toISOString(),
+                    ventaId: venta.id
+                };
+                
+                movimientos.push(movimiento);
+            });
+            
+            await guardarArchivoGitHub('productos.json', productos);
+            await guardarArchivoGitHub('ventas.json', ventas);
+            await guardarArchivoGitHub('movimientos.json', movimientos);
+            
+            document.getElementById('ventaForm').reset();
+            
+            // Limpiar productos de venta (dejar solo uno)
+            const container = document.getElementById('productosVenta');
+            container.innerHTML = `
+                <div class="producto-venta-item">
+                    <div class="form-row" style="margin-bottom: 10px;">
+                        <select class="producto-select" required>
+                            <option value="">Seleccionar producto...</option>
+                        </select>
+                        <input type="number" class="cantidad-input" min="1" placeholder="Cantidad" required>
+                    </div>
+                    <div class="precio-info" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Precio unitario:</span>
+                            <span class="precio-unitario">₲ 0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Stock disponible:</span>
+                            <span class="stock-disponible">0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                            <span>Subtotal:</span>
+                            <span class="subtotal">₲ 0</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Reconfigurar eventos
+            const select = container.querySelector('.producto-select');
+            const cantidadInput = container.querySelector('.cantidad-input');
+            const item = container.querySelector('.producto-venta-item');
+            
+            select.addEventListener('change', () => actualizarInfoProductoVenta(item));
+            cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
+            
+            actualizarTodo();
+            mostrarNotificacion(`Venta registrada por ₲ ${total.toLocaleString('es-PY')}`, 'success');
+        }
+
+        function actualizarSelectoresProductos() {
+            // Actualizar selector de ajuste de stock
+            const selectAjuste = document.getElementById('productoAjuste');
+            const currentValue = selectAjuste.value;
+            selectAjuste.innerHTML = '<option value="">Seleccionar producto...</option>';
+            
+            productos.filter(p => p.activo).forEach(producto => {
+                const option = document.createElement('option');
+                option.value = producto.id;
+                option.textContent = `${producto.nombre} (${producto.codigo})`;
+                selectAjuste.appendChild(option);
+            });
+            
+            selectAjuste.value = currentValue;
+            
+            // Actualizar selectores de venta
+            actualizarSelectoresProductosVenta();
+        }
+
+        function actualizarTodo() {
+            actualizarEstadisticas();
+            actualizarSelectoresProductos();
+            actualizarDashboard();
+            
+            // Actualizar tablas según la pestaña activa
+            const tabActivo = document.querySelector('.tab-btn.active').textContent;
+            if (tabActivo.includes('Productos')) {
+                renderizarTablaProductos();
+            } else if (tabActivo.includes('Ventas')) {
+                renderizarTablaVentas();
+                actualizarEstadisticasVentas();
+            } else if (tabActivo.includes('Inventario')) {
+                renderizarTablaInventario();
+            } else if (tabActivo.includes('Reportes')) {
+                actualizarReportes();
+            }
+        }
+
+        function actualizarEstadisticas() {
+            const totalProductos = productos.filter(p => p.activo).length;
+            
+            // Ventas de hoy
+            const hoy = new Date().toISOString().split('T')[0];
+            const ventasHoy = ventas.filter(v => v.fecha.split('T')[0] === hoy);
+            const totalVentasHoy = ventasHoy.reduce((sum, v) => sum + v.total, 0);
+            const gananciasHoy = ventasHoy.reduce((sum, v) => sum + v.ganancia, 0);
+            
+            // Stock bajo
+            const stockBajo = productos.filter(p => p.activo && p.stock <= p.stockMinimo).length;
+            
+            document.getElementById('totalProductos').textContent = totalProductos;
+            document.getElementById('ventasHoy').textContent = '₲ ' + totalVentasHoy.toLocaleString('es-PY');
+            document.getElementById('gananciasHoy').textContent = '₲ ' + gananciasHoy.toLocaleString('es-PY');
+            document.getElementById('stockBajo').textContent = stockBajo;
+        }
+
+        function actualizarDashboard() {
+            actualizarAlertasStock();
+            actualizarTopProductos();
+            actualizarMovimientosRecientes();
+        }
+
+        function actualizarAlertasStock() {
+            const productosStockBajo = productos.filter(p => p.activo && p.stock <= p.stockMinimo);
+            const container = document.getElementById('alertasStock');
+            
+            if (productosStockBajo.length > 0) {
+                let html = `
+                    <div class="alertas-stock">
+                        <h3>⚠️ Productos con Stock Bajo (${productosStockBajo.length})</h3>
+                `;
+                
+                productosStockBajo.forEach(p => {
+                    html += `
+                        <div class="alerta-item">
+                            <div>
+                                <strong>${p.nombre}</strong><br>
+                                <small>Stock actual: ${p.stock} | Mínimo: ${p.stockMinimo}</small>
+                            </div>
+                            <span style="color: #ef4444; font-weight: bold;">¡Reabastecer!</span>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '';
+            }
+        }
+
+        function actualizarTopProductos() {
+            // Calcular productos más vendidos
+            const ventasPorProducto = {};
+            
+            ventas.forEach(venta => {
+                venta.productos.forEach(p => {
+                    if (!ventasPorProducto[p.productoId]) {
+                        ventasPorProducto[p.productoId] = {
+                            nombre: p.nombre,
+                            cantidadVendida: 0,
+                            ingresoTotal: 0
+                        };
+                    }
+                    ventasPorProducto[p.productoId].cantidadVendida += p.cantidad;
+                    ventasPorProducto[p.productoId].ingresoTotal += p.subtotal;
+                });
+            });
+            
+            const topProductos = Object.values(ventasPorProducto)
+                .sort((a, b) => b.cantidadVendida - a.cantidadVendida)
+                .slice(0, 5);
+            
+            const container = document.getElementById('topProductos');
+            
+            if (topProductos.length > 0) {
+                let html = '';
+                topProductos.forEach((p, index) => {
+                    html += `
+                        <div class="top-producto-item">
+                            <div>
+                                <strong>${index + 1}. ${p.nombre}</strong><br>
+                                <small>Vendido: ${p.cantidadVendida} unidades</small>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong style="color: #10b981;">₲ ${p.ingresoTotal.toLocaleString('es-PY')}</strong>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No hay ventas registradas</p>';
+            }
+        }
+
+        function actualizarMovimientosRecientes() {
+            const movimientosRecientes = movimientos
+                .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+                .slice(0, 10);
+            
+            const container = document.getElementById('movimientosRecientes');
+            
+            if (movimientosRecientes.length > 0) {
+                let html = '';
+                movimientosRecientes.forEach(m => {
+                    const fecha = new Date(m.fecha).toLocaleDateString('es-ES');
+                    const hora = new Date(m.fecha).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                    
+                    html += `
+                        <div class="movimiento-item">
+                            <div>
+                                <strong>${m.productoNombre}</strong><br>
+                                <small>${fecha} ${hora}</small>
+                            </div>
+                            <div style="text-align: right;">
+                                <span class="movimiento-tipo tipo-${m.tipo}">${m.tipo}</span><br>
+                                <small>${m.cantidad} unidades</small>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No hay movimientos</p>';
+            }
+        }
+
+        function renderizarTablaProductos() {
+            const tbody = document.getElementById('productosBody');
+            tbody.innerHTML = '';
+
+            const productosActivos = productos.filter(p => p.activo);
+
+            productosActivos.forEach(producto => {
+                const row = tbody.insertRow();
+                
+                let estadoStock = 'stock-alto';
+                let textoStock = 'Alto';
+                
+                if (producto.stock <= producto.stockMinimo) {
+                    estadoStock = 'stock-bajo';
+                    textoStock = 'Bajo';
+                } else if (producto.stock <= producto.stockMinimo * 2) {
+                    estadoStock = 'stock-medio';
+                    textoStock = 'Medio';
+                }
+                
+                const gananciaUnitaria = producto.precioVenta - producto.precioCosto;
+                
+                row.innerHTML = `
+                    <td>${producto.codigo}</td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.categoria}</td>
+                    <td>₲ ${producto.precioCosto.toLocaleString('es-PY')}</td>
+                    <td>₲ ${producto.precioVenta.toLocaleString('es-PY')}</td>
+                    <td>${producto.stock} ${producto.unidadMedida}</td>
+                    <td><span class="status-badge ${estadoStock}">${textoStock}</span></td>
+                    <td style="color: #10b981; font-weight: bold;">₲ ${gananciaUnitaria.toLocaleString('es-PY')}</td>
+                    <td class="actions">
+                        <button class="btn-small btn-warning" onclick="editarProducto(${producto.id})">✏️</button>
+                        <button class="btn-small btn-danger" onclick="eliminarProducto(${producto.id})">🗑️</button>
+                    </td>
+                `;
+            });
+        }
+
+        function renderizarTablaVentas() {
+            const tbody = document.getElementById('ventasBody');
+            tbody.innerHTML = '';
+
+            ventas.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)).forEach(venta => {
+                const row = tbody.insertRow();
+                const fecha = new Date(venta.fecha).toLocaleDateString('es-ES');
+                const hora = new Date(venta.fecha).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                
+                const productosResumen = venta.productos.map(p => `${p.nombre} (${p.cantidad})`).join(', ');
+                
+                row.innerHTML = `
+                    <td>${fecha}<br><small>${hora}</small></td>
+                    <td>${venta.cliente}</td>
+                    <td title="${productosResumen}">${venta.productos.length} producto(s)</td>
+                    <td>${venta.metodoPago}</td>
+                    <td>₲ ${venta.subtotal.toLocaleString('es-PY')}</td>
+                    <td>₲ ${venta.descuento.toLocaleString('es-PY')}</td>
+                    <td><strong>₲ ${venta.total.toLocaleString('es-PY')}</strong></td>
+                    <td style="color: #10b981; font-weight: bold;">₲ ${venta.ganancia.toLocaleString('es-PY')}</td>
+                    <td class="actions">
+                        <button class="btn-small btn-info" onclick="verDetalleVenta(${venta.id})">👁️</button>
+                        <button class="btn-small btn-danger" onclick="anularVenta(${venta.id})">❌</button>
+                    </td>
+                `;
+            });
+        }
+
+        function renderizarTablaInventario() {
+            const tbody = document.getElementById('inventarioBody');
+            tbody.innerHTML = '';
+
+            movimientos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)).forEach(movimiento => {
+                const row = tbody.insertRow();
+                const fecha = new Date(movimiento.fecha).toLocaleDateString('es-ES');
+                const hora = new Date(movimiento.fecha).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                
+                row.innerHTML = `
+                    <td>${fecha}<br><small>${hora}</small></td>
+                    <td>${movimiento.productoNombre}</td>
+                    <td><span class="movimiento-tipo tipo-${movimiento.tipo}">${movimiento.tipo}</span></td>
+                    <td>${movimiento.cantidad}</td>
+                    <td>${movimiento.stockAnterior}</td>
+                    <td>${movimiento.stockNuevo}</td>
+                    <td>${movimiento.motivo}</td>
+                    <td>₲ ${movimiento.valor.toLocaleString('es-PY')}</td>
+                `;
+            });
+        }
+
+        function actualizarEstadisticasVentas() {
+            const hoy = new Date().toISOString().split('T')[0];
+            const inicioMes = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0];
+            
+            // Ventas del día
+            const ventasHoy = ventas.filter(v => v.fecha.split('T')[0] === hoy);
+            const totalVentasHoy = ventasHoy.reduce((sum, v) => sum + v.total, 0);
+            const gananciasHoy = ventasHoy.reduce((sum, v) => sum + v.ganancia, 0);
+            
+            // Ventas del mes
+            const ventasMes = ventas.filter(v => v.fecha.split('T')[0] >= inicioMes);
+            const totalVentasMes = ventasMes.reduce((sum, v) => sum + v.total, 0);
+            
+            document.getElementById('ventasDelDia').textContent = '₲ ' + totalVentasHoy.toLocaleString('es-PY');
+            document.getElementById('ventasDelMes').textContent = '₲ ' + totalVentasMes.toLocaleString('es-PY');
+            document.getElementById('gananciasDelDia').textContent = '₲ ' + gananciasHoy.toLocaleString('es-PY');
+            document.getElementById('numeroVentasHoy').textContent = ventasHoy.length;
+            
+            // Actualizar progreso de meta
+            if (metaDiaria > 0) {
+                const progreso = (totalVentasHoy / metaDiaria) * 100;
+                document.getElementById('progresoMeta').style.display = 'block';
+                document.getElementById('barraProgreso').style.width = Math.min(progreso, 100) + '%';
+                document.getElementById('porcentajeMeta').textContent = progreso.toFixed(1) + '%';
+                
+                if (progreso >= 100) {
+                    document.getElementById('barraProgreso').style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                } else if (progreso >= 75) {
+                    document.getElementById('barraProgreso').style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+                } else {
+                    document.getElementById('barraProgreso').style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                }
+            }
+        }
+
+        function establecerMeta() {
+            const meta = parseFloat(document.getElementById('metaDiaria').value);
+            if (meta > 0) {
+                metaDiaria = meta;
+                localStorage.setItem('metaDiaria', metaDiaria);
+                actualizarEstadisticasVentas();
+                mostrarNotificacion('Meta diaria establecida: ₲ ' + meta.toLocaleString('es-PY'), 'success');
+            } else {
+                mostrarNotificacion('Ingresa una meta válida', 'error');
+            }
+        }
+
+        function actualizarReportes() {
+            // Calcular inversión total
+            const inversionTotal = productos.reduce((sum, p) => sum + (p.stock * p.precioCosto), 0);
+            const valorInventario = productos.reduce((sum, p) => sum + (p.stock * p.precioVenta), 0);
+            const gananciasTotales = ventas.reduce((sum, v) => sum + v.ganancia, 0);
+            const roi = inversionTotal > 0 ? ((gananciasTotales / inversionTotal) * 100).toFixed(1) : 0;
+            
+            document.getElementById('inversionTotal').textContent = '₲ ' + inversionTotal.toLocaleString('es-PY');
+            document.getElementById('valorInventario').textContent = '₲ ' + valorInventario.toLocaleString('es-PY');
+            document.getElementById('gananciasTotales').textContent = '₲ ' + gananciasTotales.toLocaleString('es-PY');
+            document.getElementById('roi').textContent = roi + '%';
+            
+            // Productos más rentables
+            actualizarProductosRentables();
+        }
+
+        function actualizarProductosRentables() {
+            const rentabilidadPorProducto = {};
+            
+            ventas.forEach(venta => {
+                venta.productos.forEach(p => {
+                    if (!rentabilidadPorProducto[p.productoId]) {
+                        rentabilidadPorProducto[p.productoId] = {
+                            nombre: p.nombre,
+                            gananciaTotal: 0,
+                            cantidadVendida: 0
+                        };
+                    }
+                    const ganancia = (p.precioUnitario - p.costoUnitario) * p.cantidad;
+                    rentabilidadPorProducto[p.productoId].gananciaTotal += ganancia;
+                    rentabilidadPorProducto[p.productoId].cantidadVendida += p.cantidad;
+                });
+            });
+            
+            const productosRentables = Object.values(rentabilidadPorProducto)
+                .sort((a, b) => b.gananciaTotal - a.gananciaTotal)
+                .slice(0, 5);
+            
+            const container = document.getElementById('productosRentables');
+            
+            if (productosRentables.length > 0) {
+                let html = '';
+                productosRentables.forEach((p, index) => {
+                    html += `
+                        <div class="top-producto-item">
+                            <div>
+                                <strong>${index + 1}. ${p.nombre}</strong><br>
+                                <small>Vendido: ${p.cantidadVendida} unidades</small>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong style="color: #10b981;">₲ ${p.gananciaTotal.toLocaleString('es-PY')}</strong>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No hay datos suficientes</p>';
+            }
+        }
+
+        function generarReportePeriodo() {
+            const fechaDesde = document.getElementById('fechaDesde').value;
+            const fechaHasta = document.getElementById('fechaHasta').value;
+            
+            if (!fechaDesde || !fechaHasta) {
+                mostrarNotificacion('Selecciona ambas fechas', 'error');
+                return;
+            }
+            
+            const ventasPeriodo = ventas.filter(v => {
+                const fechaVenta = v.fecha.split('T')[0];
+                return fechaVenta >= fechaDesde && fechaVenta <= fechaHasta;
+            });
+            
+            const totalVentas = ventasPeriodo.reduce((sum, v) => sum + v.total, 0);
+            const totalGanancias = ventasPeriodo.reduce((sum, v) => sum + v.ganancia, 0);
+            const numeroVentas = ventasPeriodo.length;
+            
+            const container = document.getElementById('reportePeriodo');
+            container.innerHTML = `
+                <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 2px solid #e0e0e0;">
+                    <h4>📊 Reporte del ${fechaDesde} al ${fechaHasta}</h4>
+                    <div style="display: grid; gap: 10px; margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Número de ventas:</span>
+                            <strong>${numeroVentas}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Total en ventas:</span>
+                            <strong style="color: #3b82f6;">₲ ${totalVentas.toLocaleString('es-PY')}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Total en ganancias:</span>
+                            <strong style="color: #10b981;">₲ ${totalGanancias.toLocaleString('es-PY')}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Promedio por venta:</span>
+                            <strong>₲ ${numeroVentas > 0 ? (totalVentas / numeroVentas).toLocaleString('es-PY') : '0'}</strong>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Funciones de filtrado
+        function filtrarProductos() {
+            const searchTerm = document.getElementById('searchProductos').value.toLowerCase();
+            const categoria = document.getElementById('filtroCategoria').value;
+            const stock = document.getElementById('filtroStock').value;
+            const rows = document.querySelectorAll('#productosBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const categoriaCell = row.cells[2].textContent;
+                const stockCell = row.cells[5].textContent;
+                const stockBadge = row.querySelector('.status-badge');
+                
+                let mostrar = true;
+                
+                // Filtro de búsqueda
+                if (searchTerm && !text.includes(searchTerm)) {
+                    mostrar = false;
+                }
+                
+                // Filtro de categoría
+                if (categoria && categoriaCell !== categoria) {
+                    mostrar = false;
+                }
+                
+                // Filtro de stock
+                if (stock === 'bajo' && !stockBadge.classList.contains('stock-bajo')) {
+                    mostrar = false;
+                }
+                if (stock === 'alto' && !stockBadge.classList.contains('stock-alto')) {
+                    mostrar = false;
+                }
+                
+                row.style.display = mostrar ? '' : 'none';
+            });
+        }
+
+        function filtrarVentas() {
+            const searchTerm = document.getElementById('searchVentas').value.toLowerCase();
+            const fecha = document.getElementById('filtroFecha').value;
+            const metodo = document.getElementById('filtroMetodo').value;
+            const rows = document.querySelectorAll('#ventasBody tr');
+            
+            const hoy = new Date();
+            const inicioSemana = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - hoy.getDay());
+            const inicioMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const fechaText = row.cells[0].textContent.split('\n')[0]; // Solo la fecha, sin la hora
+                const metodoText = row.cells[3].textContent;
+                
+                let mostrar = true;
+                
+                // Filtro de búsqueda
+                if (searchTerm && !text.includes(searchTerm)) {
+                    mostrar = false;
+                }
+                
+                // Filtro de fecha
+                if (fecha) {
+                    const fechaVenta = new Date(fechaText.split('/').reverse().join('-'));
+                    
+                    if (fecha === 'hoy' && fechaVenta.toDateString() !== hoy.toDateString()) {
+                        mostrar = false;
+                    } else if (fecha === 'semana' && fechaVenta < inicioSemana) {
+                        mostrar = false;
+                    } else if (fecha === 'mes' && fechaVenta < inicioMes) {
+                        mostrar = false;
+                    }
+                }
+                
+                // Filtro de método
+                if (metodo && metodoText !== metodo) {
+                    mostrar = false;
+                }
+                
+                row.style.display = mostrar ? '' : 'none';
+            });
+        }
+
+        function filtrarInventario() {
+            const searchTerm = document.getElementById('searchInventario').value.toLowerCase();
+            const tipoMovimiento = document.getElementById('filtroMovimiento').value;
+            const fechaFiltro = document.getElementById('filtroFechaInventario').value;
+            const rows = document.querySelectorAll('#inventarioBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const tipo = row.querySelector('.movimiento-tipo').textContent;
+                const fechaCell = row.cells[0].textContent.split('\n')[0];
+                
+                let mostrar = true;
+                
+                // Filtro de búsqueda
+                if (searchTerm && !text.includes(searchTerm)) {
+                    mostrar = false;
+                }
+                
+                // Filtro de tipo
+                if (tipoMovimiento && tipo !== tipoMovimiento) {
+                    mostrar = false;
+                }
+                
+                // Filtro de fecha
+                if (fechaFiltro) {
+                    const fechaMovimiento = fechaCell.split('/').reverse().join('-');
+                    if (fechaMovimiento !== fechaFiltro) {
+                        mostrar = false;
+                    }
+                }
+                
+                row.style.display = mostrar ? '' : 'none';
+            });
+        }
+
+        // Funciones de edición y eliminación
+        function editarProducto(id) {
+            const producto = productos.find(p => p.id === id);
+            if (producto) {
+                document.getElementById('editProductoId').value = producto.id;
+                document.getElementById('editNombreProducto').value = producto.nombre;
+                document.getElementById('editCodigoProducto').value = producto.codigo;
+                document.getElementById('editCategoriaProducto').value = producto.categoria;
+                document.getElementById('editPrecioCosto').value = producto.precioCosto;
+                document.getElementById('editPrecioVenta').value = producto.precioVenta;
+                document.getElementById('editStockMinimo').value = producto.stockMinimo;
+                document.getElementById('editProductoModal').style.display = 'flex';
+            }
+        }
+
+        async function actualizarProducto() {
+            const id = parseInt(document.getElementById('editProductoId').value);
+            const producto = productos.find(p => p.id === id);
+            
+            if (producto) {
+                producto.nombre = document.getElementById('editNombreProducto').value;
+                producto.codigo = document.getElementById('editCodigoProducto').value;
+                producto.categoria = document.getElementById('editCategoriaProducto').value;
+                producto.precioCosto = parseFloat(document.getElementById('editPrecioCosto').value);
+                producto.precioVenta = parseFloat(document.getElementById('editPrecioVenta').value);
+                producto.stockMinimo = parseInt(document.getElementById('editStockMinimo').value);
+                
+                await guardarArchivoGitHub('productos.json', productos);
+                cerrarModal('editProductoModal');
+                actualizarTodo();
+                mostrarNotificacion('Producto actualizado exitosamente', 'success');
+            }
+        }
+
+        async function eliminarProducto(id) {
+            const producto = productos.find(p => p.id === id);
+            if (producto && confirm(`¿Eliminar el producto ${producto.nombre}?`)) {
+                producto.activo = false;
+                await guardarArchivoGitHub('productos.json', productos);
+                actualizarTodo();
+                mostrarNotificacion('Producto eliminado', 'success');
+            }
+        }
+
+        function verDetalleVenta(id) {
+            const venta = ventas.find(v => v.id === id);
+            if (venta) {
+                let detalles = `DETALLE DE VENTA\n\n`;
+                detalles += `Fecha: ${new Date(venta.fecha).toLocaleString('es-ES')}\n`;
+                detalles += `Cliente: ${venta.cliente}\n`;
+                detalles += `Método de pago: ${venta.metodoPago}\n\n`;
+                detalles += `PRODUCTOS:\n`;
+                
+                venta.productos.forEach(p => {
+                    detalles += `• ${p.nombre}: ${p.cantidad} x ₲${p.precioUnitario.toLocaleString('es-PY')} = ₲${p.subtotal.toLocaleString('es-PY')}\n`;
+                });
+                
+                detalles += `\nSubtotal: ₲${venta.subtotal.toLocaleString('es-PY')}\n`;
+                detalles += `Descuento: ₲${venta.descuento.toLocaleString('es-PY')}\n`;
+                detalles += `TOTAL: ₲${venta.total.toLocaleString('es-PY')}\n`;
+                detalles += `Ganancia: ₲${venta.ganancia.toLocaleString('es-PY')}`;
+                
+                alert(detalles);
+            }
+        }
+
+        async function anularVenta(id) {
+            if (confirm('¿Anular esta venta? Se restaurará el stock de los productos.')) {
+                const venta = ventas.find(v => v.id === id);
+                if (venta) {
+                    // Restaurar stock
+                    venta.productos.forEach(pv => {
+                        const producto = productos.find(p => p.id === pv.productoId);
+                        if (producto) {
+                            const stockAnterior = producto.stock;
+                            producto.stock += pv.cantidad;
+                            
+                            // Crear movimiento de anulación
+                            const movimiento = {
+                                id: Date.now() + Math.random(),
+                                productoId: producto.id,
+                                productoNombre: producto.nombre,
+                                tipo: 'ajuste',
+                                cantidad: pv.cantidad,
+                                stockAnterior: stockAnterior,
+                                stockNuevo: producto.stock,
+                                motivo: `Anulación de venta - ${venta.cliente}`,
+                                valor: pv.subtotal,
+                                fecha: new Date().toISOString()
+                            };
+                            
+                            movimientos.push(movimiento);
+                        }
+                    });
+                    
+                    // Eliminar venta
+                    const index = ventas.findIndex(v => v.id === id);
+                    ventas.splice(index, 1);
+                    
+                    await guardarArchivoGitHub('productos.json', productos);
+                    await guardarArchivoGitHub('ventas.json', ventas);
+                    await guardarArchivoGitHub('movimientos.json', movimientos);
+                    
+                    actualizarTodo();
+                    mostrarNotificacion('Venta anulada y stock restaurado', 'success');
+                }
+            }
+        }
+
+        // Funciones de utilidad
+        function cerrarModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function mostrarNotificacion(mensaje, tipo = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${tipo}`;
+            notification.textContent = mensaje;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Eventos globales
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Configurar eventos iniciales de productos en venta
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const select = document.querySelector('.producto-select');
+                const cantidadInput = document.querySelector('.cantidad-input');
+                const item = document.querySelector('.producto-venta-item');
+                
+                if (select && cantidadInput && item) {
+                    select.addEventListener('change', () => actualizarInfoProductoVenta(item));
+                    cantidadInput.addEventListener('input', () => actualizarInfoProductoVenta(item));
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

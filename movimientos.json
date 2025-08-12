@@ -1,5 +1,18 @@
 [
   {
+    "id": 1755017818206.3586,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 2,
+    "stockAnterior": 5,
+    "stockNuevo": 3,
+    "motivo": "Venta - Cliente Sixto Delivery de juan",
+    "valor": 260000,
+    "fecha": "2025-08-12T16:56:58.206Z",
+    "ventaId": 1755017818206
+  },
+  {
     "id": 1755017728780.0823,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -88,16 +101,15 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755017818206.3586,
+    "id": 1755017894410,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "venta",
-    "cantidad": 2,
-    "stockAnterior": 5,
-    "stockNuevo": 3,
-    "motivo": "Venta - Cliente Sixto Delivery de juan",
-    "valor": 260000,
-    "fecha": "2025-08-12T16:56:58.206Z",
-    "ventaId": 1755017818206
+    "tipo": "entrada",
+    "cantidad": 25,
+    "stockAnterior": 3,
+    "stockNuevo": 28,
+    "motivo": "Compra de nueva tanda ",
+    "valor": 2200000,
+    "fecha": "2025-08-12T16:58:14.410Z"
   }
 ]

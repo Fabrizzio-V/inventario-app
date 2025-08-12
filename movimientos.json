@@ -1,5 +1,18 @@
 [
   {
+    "id": 1755017728780.0823,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 6,
+    "stockAnterior": 11,
+    "stockNuevo": 5,
+    "motivo": "Venta - Cliente FARMACIA Naturlider",
+    "valor": 720000,
+    "fecha": "2025-08-12T16:55:28.780Z",
+    "ventaId": 1755017728780
+  },
+  {
     "id": 1755017647850.2878,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -75,16 +88,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755017728780.0823,
+    "id": 1755017818206.3586,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 6,
-    "stockAnterior": 11,
-    "stockNuevo": 5,
-    "motivo": "Venta - Cliente FARMACIA Naturlider",
-    "valor": 720000,
-    "fecha": "2025-08-12T16:55:28.780Z",
-    "ventaId": 1755017728780
+    "cantidad": 2,
+    "stockAnterior": 5,
+    "stockNuevo": 3,
+    "motivo": "Venta - Cliente Sixto Delivery de juan",
+    "valor": 260000,
+    "fecha": "2025-08-12T16:56:58.206Z",
+    "ventaId": 1755017818206
   }
 ]

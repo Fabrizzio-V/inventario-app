@@ -1,5 +1,18 @@
 [
   {
+    "id": 1753992886565.0112,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 1,
+    "stockAnterior": 15,
+    "stockNuevo": 14,
+    "motivo": "Venta - Ariel Camio blanca",
+    "valor": 130000,
+    "fecha": "2025-07-31T20:14:46.565Z",
+    "ventaId": 1753992886565
+  },
+  {
     "id": 1753992870696.018,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -7,7 +20,7 @@
     "cantidad": 1,
     "stockAnterior": 14,
     "stockNuevo": 15,
-    "motivo": "Anulación de venta - Ariel Camio blanca",
+    "motivo": "AnulaciÃ³n de venta - Ariel Camio blanca",
     "valor": 120000,
     "fecha": "2025-07-31T20:14:30.696Z"
   },
@@ -49,16 +62,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1753992886565.0112,
+    "id": 1755017647850.2878,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 1,
-    "stockAnterior": 15,
-    "stockNuevo": 14,
-    "motivo": "Venta - Ariel Camio blanca",
-    "valor": 130000,
-    "fecha": "2025-07-31T20:14:46.565Z",
-    "ventaId": 1753992886565
+    "cantidad": 3,
+    "stockAnterior": 14,
+    "stockNuevo": 11,
+    "motivo": "Venta - Miel cliente siempre ",
+    "valor": 360000,
+    "fecha": "2025-08-12T16:54:07.850Z",
+    "ventaId": 1755017647850
   }
 ]

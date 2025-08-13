@@ -1,5 +1,47 @@
 [
   {
+    "id": 1755110252373,
+    "fecha": "2025-08-13T18:37:32.373Z",
+    "cliente": "Juan delivery",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 1,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 120000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 120000,
+    "descuento": 0,
+    "total": 120000,
+    "ganancia": 32000
+  },
+  {
+    "id": 1755110249347,
+    "fecha": "2025-08-13T18:37:29.347Z",
+    "cliente": "Juan delivery",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 1,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 120000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 120000,
+    "descuento": 0,
+    "total": 120000,
+    "ganancia": 32000
+  },
+  {
     "id": 1755017818206,
     "fecha": "2025-08-12T16:56:58.206Z",
     "cliente": "Cliente Sixto Delivery de juan",
@@ -82,26 +124,5 @@
     "descuento": 0,
     "total": 130000,
     "ganancia": 42000
-  },
-  {
-    "id": 1755110249347,
-    "fecha": "2025-08-13T18:37:29.347Z",
-    "cliente": "Juan delivery",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 1,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 120000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 120000,
-    "descuento": 0,
-    "total": 120000,
-    "ganancia": 32000
   }
 ]

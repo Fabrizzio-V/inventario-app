@@ -1,5 +1,17 @@
 [
   {
+    "id": 1755110258946.858,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 26,
+    "stockNuevo": 27,
+    "motivo": "Anulación de venta - Juan delivery",
+    "valor": 120000,
+    "fecha": "2025-08-13T18:37:38.946Z"
+  },
+  {
     "id": 1755110252373.6418,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -139,15 +151,29 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755110258946.858,
+    "id": 1755110280256.5227,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "ajuste",
+    "tipo": "venta",
+    "cantidad": 1,
+    "stockAnterior": 27,
+    "stockNuevo": 26,
+    "motivo": "Venta - Cliente x en moto ",
+    "valor": 120000,
+    "fecha": "2025-08-13T18:38:00.256Z",
+    "ventaId": 1755110280256
+  },
+  {
+    "id": 1755110282157.2202,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
     "cantidad": 1,
     "stockAnterior": 26,
-    "stockNuevo": 27,
-    "motivo": "Anulación de venta - Juan delivery",
+    "stockNuevo": 25,
+    "motivo": "Venta - Cliente x en moto ",
     "valor": 120000,
-    "fecha": "2025-08-13T18:37:38.946Z"
+    "fecha": "2025-08-13T18:38:02.157Z",
+    "ventaId": 1755110282157
   }
 ]

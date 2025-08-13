@@ -1,5 +1,31 @@
 [
   {
+    "id": 1755110282157.2202,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 1,
+    "stockAnterior": 26,
+    "stockNuevo": 25,
+    "motivo": "Venta - Cliente x en moto ",
+    "valor": 120000,
+    "fecha": "2025-08-13T18:38:02.157Z",
+    "ventaId": 1755110282157
+  },
+  {
+    "id": 1755110280256.5227,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 1,
+    "stockAnterior": 27,
+    "stockNuevo": 26,
+    "motivo": "Venta - Cliente x en moto ",
+    "valor": 120000,
+    "fecha": "2025-08-13T18:38:00.256Z",
+    "ventaId": 1755110280256
+  },
+  {
     "id": 1755110258946.858,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -149,31 +175,5 @@
     "motivo": "Stock inicial",
     "valor": 704000,
     "fecha": "2025-07-31T19:48:53.170Z"
-  },
-  {
-    "id": 1755110280256.5227,
-    "productoId": 1753991399570,
-    "productoNombre": "Vital Honey VIP",
-    "tipo": "venta",
-    "cantidad": 1,
-    "stockAnterior": 27,
-    "stockNuevo": 26,
-    "motivo": "Venta - Cliente x en moto ",
-    "valor": 120000,
-    "fecha": "2025-08-13T18:38:00.256Z",
-    "ventaId": 1755110280256
-  },
-  {
-    "id": 1755110282157.2202,
-    "productoId": 1753991399570,
-    "productoNombre": "Vital Honey VIP",
-    "tipo": "venta",
-    "cantidad": 1,
-    "stockAnterior": 26,
-    "stockNuevo": 25,
-    "motivo": "Venta - Cliente x en moto ",
-    "valor": 120000,
-    "fecha": "2025-08-13T18:38:02.157Z",
-    "ventaId": 1755110282157
   }
 ]

@@ -1,26 +1,5 @@
 [
   {
-    "id": 1755110282157,
-    "fecha": "2025-08-13T18:38:02.157Z",
-    "cliente": "Cliente x en moto ",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 1,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 120000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "transferencia",
-    "subtotal": 120000,
-    "descuento": 0,
-    "total": 120000,
-    "ganancia": 32000
-  },
-  {
     "id": 1755110280256,
     "fecha": "2025-08-13T18:38:00.256Z",
     "cliente": "Cliente x en moto ",

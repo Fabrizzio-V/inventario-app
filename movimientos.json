@@ -1,5 +1,17 @@
 [
   {
+    "id": 1755110287175.5127,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 25,
+    "stockNuevo": 26,
+    "motivo": "Anulación de venta - Cliente x en moto ",
+    "valor": 120000,
+    "fecha": "2025-08-13T18:38:07.175Z"
+  },
+  {
     "id": 1755110282157.2202,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -33,7 +45,7 @@
     "cantidad": 1,
     "stockAnterior": 26,
     "stockNuevo": 27,
-    "motivo": "Anulaci�n de venta - Juan delivery",
+    "motivo": "Anulación de venta - Juan delivery",
     "valor": 120000,
     "fecha": "2025-08-13T18:37:38.946Z"
   },
@@ -135,7 +147,7 @@
     "cantidad": 1,
     "stockAnterior": 14,
     "stockNuevo": 15,
-    "motivo": "Anulación de venta - Ariel Camio blanca",
+    "motivo": "AnulaciÃ³n de venta - Ariel Camio blanca",
     "valor": 120000,
     "fecha": "2025-07-31T20:14:30.696Z"
   },
@@ -177,15 +189,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755110287175.5127,
+    "id": 1755278178999.652,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "ajuste",
-    "cantidad": 1,
-    "stockAnterior": 25,
-    "stockNuevo": 26,
-    "motivo": "Anulaci�n de venta - Cliente x en moto ",
-    "valor": 120000,
-    "fecha": "2025-08-13T18:38:07.175Z"
+    "tipo": "venta",
+    "cantidad": 3,
+    "stockAnterior": 26,
+    "stockNuevo": 23,
+    "motivo": "Venta - Cliente 360",
+    "valor": 360000,
+    "fecha": "2025-08-15T17:16:18.999Z",
+    "ventaId": 1755278178999
   }
 ]

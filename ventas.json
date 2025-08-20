@@ -250,5 +250,35 @@
     "descuento": 0,
     "total": 130000,
     "ganancia": 42000
+  },
+  {
+    "id": 1755711371686,
+    "fecha": "2025-08-20T17:36:11.686Z",
+    "cliente": "Boliviano Cristian",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 24,
+        "precioUnitario": 115000,
+        "costoUnitario": 88000,
+        "subtotal": 2760000,
+        "precioOriginal": 120000
+      },
+      {
+        "productoId": 1755711211680,
+        "nombre": "Vital FEM",
+        "cantidad": 3,
+        "precioUnitario": 85000,
+        "costoUnitario": 56000,
+        "subtotal": 255000,
+        "precioOriginal": 85000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 3015000,
+    "descuento": 0,
+    "total": 3015000,
+    "ganancia": 735000
   }
 ]

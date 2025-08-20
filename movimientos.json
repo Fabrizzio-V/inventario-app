@@ -1,5 +1,17 @@
 [
   {
+    "id": 1755711211680,
+    "productoId": 1755711211680,
+    "productoNombre": "Vital FEM",
+    "tipo": "entrada",
+    "cantidad": 3,
+    "stockAnterior": 0,
+    "stockNuevo": 3,
+    "motivo": "Stock inicial",
+    "valor": 168000,
+    "fecha": "2025-08-20T17:33:31.680Z"
+  },
+  {
     "id": 1755703190992.9226,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -304,15 +316,15 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755711211680,
-    "productoId": 1755711211680,
-    "productoNombre": "Vital FEM",
+    "id": 1755711287667,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
     "tipo": "entrada",
-    "cantidad": 3,
-    "stockAnterior": 0,
-    "stockNuevo": 3,
-    "motivo": "Stock inicial",
-    "valor": 168000,
-    "fecha": "2025-08-20T17:33:31.680Z"
+    "cantidad": 15,
+    "stockAnterior": 21,
+    "stockNuevo": 36,
+    "motivo": "Compra de mas mercaderia para boliviano",
+    "valor": 1320000,
+    "fecha": "2025-08-20T17:34:47.667Z"
   }
 ]

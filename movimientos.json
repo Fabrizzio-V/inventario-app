@@ -1,5 +1,18 @@
 [
   {
+    "id": 1755703190992.9226,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 5,
+    "stockAnterior": 26,
+    "stockNuevo": 21,
+    "motivo": "Venta - Gaston ",
+    "valor": 600000,
+    "fecha": "2025-08-20T15:19:50.992Z",
+    "ventaId": 1755703190992
+  },
+  {
     "id": 1755703180874.2627,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -291,16 +304,15 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755703190992.9226,
-    "productoId": 1753991399570,
-    "productoNombre": "Vital Honey VIP",
-    "tipo": "venta",
-    "cantidad": 5,
-    "stockAnterior": 26,
-    "stockNuevo": 21,
-    "motivo": "Venta - Gaston ",
-    "valor": 600000,
-    "fecha": "2025-08-20T15:19:50.992Z",
-    "ventaId": 1755703190992
+    "id": 1755711211680,
+    "productoId": 1755711211680,
+    "productoNombre": "Vital FEM",
+    "tipo": "entrada",
+    "cantidad": 3,
+    "stockAnterior": 0,
+    "stockNuevo": 3,
+    "motivo": "Stock inicial",
+    "valor": 168000,
+    "fecha": "2025-08-20T17:33:31.680Z"
   }
 ]

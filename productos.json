@@ -24,5 +24,18 @@
     "unidadMedida": "unidad",
     "fechaCreacion": "2025-07-31T19:49:59.571Z",
     "activo": true
+  },
+  {
+    "id": 1755711211680,
+    "codigo": "VHFEM",
+    "nombre": "Vital FEM",
+    "categoria": "Otros",
+    "precioCosto": 56000,
+    "precioVenta": 85000,
+    "stock": 3,
+    "stockMinimo": 0,
+    "unidadMedida": "unidad",
+    "fechaCreacion": "2025-08-20T17:33:31.680Z",
+    "activo": true
   }
 ]

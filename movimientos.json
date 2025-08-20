@@ -1,5 +1,29 @@
 [
   {
+    "id": 1755711328084.582,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 24,
+    "stockAnterior": 12,
+    "stockNuevo": 36,
+    "motivo": "Anulación de venta - Boliviano Cristian",
+    "valor": 2880000,
+    "fecha": "2025-08-20T17:35:28.084Z"
+  },
+  {
+    "id": 1755711328084.3904,
+    "productoId": 1755711211680,
+    "productoNombre": "Vital FEM",
+    "tipo": "ajuste",
+    "cantidad": 3,
+    "stockAnterior": 0,
+    "stockNuevo": 3,
+    "motivo": "Anulación de venta - Boliviano Cristian",
+    "valor": 255000,
+    "fecha": "2025-08-20T17:35:28.084Z"
+  },
+  {
     "id": 1755711309478.9475,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -354,27 +378,29 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755711328084.582,
+    "id": 1755711371686.5608,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "ajuste",
+    "tipo": "venta",
     "cantidad": 24,
-    "stockAnterior": 12,
-    "stockNuevo": 36,
-    "motivo": "Anulación de venta - Boliviano Cristian",
-    "valor": 2880000,
-    "fecha": "2025-08-20T17:35:28.084Z"
+    "stockAnterior": 36,
+    "stockNuevo": 12,
+    "motivo": "Venta - Boliviano Cristian",
+    "valor": 2760000,
+    "fecha": "2025-08-20T17:36:11.686Z",
+    "ventaId": 1755711371686
   },
   {
-    "id": 1755711328084.3904,
+    "id": 1755711371686.825,
     "productoId": 1755711211680,
     "productoNombre": "Vital FEM",
-    "tipo": "ajuste",
+    "tipo": "venta",
     "cantidad": 3,
-    "stockAnterior": 0,
-    "stockNuevo": 3,
-    "motivo": "Anulación de venta - Boliviano Cristian",
+    "stockAnterior": 3,
+    "stockNuevo": 0,
+    "motivo": "Venta - Boliviano Cristian",
     "valor": 255000,
-    "fecha": "2025-08-20T17:35:28.084Z"
+    "fecha": "2025-08-20T17:36:11.686Z",
+    "ventaId": 1755711371686
   }
 ]

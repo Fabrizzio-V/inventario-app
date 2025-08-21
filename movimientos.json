@@ -1,5 +1,31 @@
 [
   {
+    "id": 1755711371686.5608,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 24,
+    "stockAnterior": 36,
+    "stockNuevo": 12,
+    "motivo": "Venta - Boliviano Cristian",
+    "valor": 2760000,
+    "fecha": "2025-08-20T17:36:11.686Z",
+    "ventaId": 1755711371686
+  },
+  {
+    "id": 1755711371686.825,
+    "productoId": 1755711211680,
+    "productoNombre": "Vital FEM",
+    "tipo": "venta",
+    "cantidad": 3,
+    "stockAnterior": 3,
+    "stockNuevo": 0,
+    "motivo": "Venta - Boliviano Cristian",
+    "valor": 255000,
+    "fecha": "2025-08-20T17:36:11.686Z",
+    "ventaId": 1755711371686
+  },
+  {
     "id": 1755711328084.582,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -7,7 +33,7 @@
     "cantidad": 24,
     "stockAnterior": 12,
     "stockNuevo": 36,
-    "motivo": "Anulaci�n de venta - Boliviano Cristian",
+    "motivo": "Anulación de venta - Boliviano Cristian",
     "valor": 2880000,
     "fecha": "2025-08-20T17:35:28.084Z"
   },
@@ -19,7 +45,7 @@
     "cantidad": 3,
     "stockAnterior": 0,
     "stockNuevo": 3,
-    "motivo": "Anulaci�n de venta - Boliviano Cristian",
+    "motivo": "Anulación de venta - Boliviano Cristian",
     "valor": 255000,
     "fecha": "2025-08-20T17:35:28.084Z"
   },
@@ -94,7 +120,7 @@
     "cantidad": 1,
     "stockAnterior": 25,
     "stockNuevo": 26,
-    "motivo": "Anulaci�n de venta - Gaston ",
+    "motivo": "Anulación de venta - Gaston ",
     "valor": 120000,
     "fecha": "2025-08-20T15:19:40.874Z"
   },
@@ -157,7 +183,7 @@
     "cantidad": 1,
     "stockAnterior": 19,
     "stockNuevo": 18,
-    "motivo": "Venta - Venta de mamá",
+    "motivo": "Venta - Venta de mamÃ¡",
     "valor": 120000,
     "fecha": "2025-08-17T00:55:32.459Z",
     "ventaId": 1755392132459
@@ -196,7 +222,7 @@
     "cantidad": 1,
     "stockAnterior": 25,
     "stockNuevo": 26,
-    "motivo": "AnulaciÃ³n de venta - Cliente x en moto ",
+    "motivo": "AnulaciÃƒÂ³n de venta - Cliente x en moto ",
     "valor": 120000,
     "fecha": "2025-08-13T18:38:07.175Z"
   },
@@ -234,7 +260,7 @@
     "cantidad": 1,
     "stockAnterior": 26,
     "stockNuevo": 27,
-    "motivo": "AnulaciÃ³n de venta - Juan delivery",
+    "motivo": "AnulaciÃƒÂ³n de venta - Juan delivery",
     "valor": 120000,
     "fecha": "2025-08-13T18:37:38.946Z"
   },
@@ -336,7 +362,7 @@
     "cantidad": 1,
     "stockAnterior": 14,
     "stockNuevo": 15,
-    "motivo": "AnulaciÃƒÂ³n de venta - Ariel Camio blanca",
+    "motivo": "AnulaciÃƒÆ’Ã‚Â³n de venta - Ariel Camio blanca",
     "valor": 120000,
     "fecha": "2025-07-31T20:14:30.696Z"
   },
@@ -378,29 +404,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755711371686.5608,
+    "id": 1755800366973.1482,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 24,
-    "stockAnterior": 36,
-    "stockNuevo": 12,
-    "motivo": "Venta - Boliviano Cristian",
-    "valor": 2760000,
-    "fecha": "2025-08-20T17:36:11.686Z",
-    "ventaId": 1755711371686
-  },
-  {
-    "id": 1755711371686.825,
-    "productoId": 1755711211680,
-    "productoNombre": "Vital FEM",
-    "tipo": "venta",
-    "cantidad": 3,
-    "stockAnterior": 3,
-    "stockNuevo": 0,
-    "motivo": "Venta - Boliviano Cristian",
-    "valor": 255000,
-    "fecha": "2025-08-20T17:36:11.686Z",
-    "ventaId": 1755711371686
+    "cantidad": 1,
+    "stockAnterior": 12,
+    "stockNuevo": 11,
+    "motivo": "Venta - Delivery que mando juan ",
+    "valor": 120000,
+    "fecha": "2025-08-21T18:19:26.973Z",
+    "ventaId": 1755800366973
   }
 ]

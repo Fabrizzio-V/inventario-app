@@ -301,5 +301,26 @@
     "descuento": 0,
     "total": 130000,
     "ganancia": 42000
+  },
+  {
+    "id": 1755811177700,
+    "fecha": "2025-08-21T21:19:37.700Z",
+    "cliente": "Cliente 360",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 2,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 240000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 240000,
+    "descuento": 0,
+    "total": 240000,
+    "ganancia": 64000
   }
 ]

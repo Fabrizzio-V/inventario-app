@@ -1,5 +1,18 @@
 [
   {
+    "id": 1755811177700.4077,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 2,
+    "stockAnterior": 11,
+    "stockNuevo": 9,
+    "motivo": "Venta - Cliente 360",
+    "valor": 240000,
+    "fecha": "2025-08-21T21:19:37.700Z",
+    "ventaId": 1755811177700
+  },
+  {
     "id": 1755800376583.2732,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -442,16 +455,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1755811177700.4077,
+    "id": 1755811312819.75,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 2,
-    "stockAnterior": 11,
-    "stockNuevo": 9,
-    "motivo": "Venta - Cliente 360",
-    "valor": 240000,
-    "fecha": "2025-08-21T21:19:37.700Z",
-    "ventaId": 1755811177700
+    "cantidad": 1,
+    "stockAnterior": 9,
+    "stockNuevo": 8,
+    "motivo": "Venta - Regale a morel una caja",
+    "valor": 120000,
+    "fecha": "2025-08-21T21:21:52.819Z",
+    "ventaId": 1755811312819
   }
 ]

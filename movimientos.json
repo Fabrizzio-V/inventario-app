@@ -428,5 +428,17 @@
     "motivo": "Stock inicial",
     "valor": 704000,
     "fecha": "2025-07-31T19:48:53.170Z"
+  },
+  {
+    "id": 1755800376583.2732,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 10,
+    "stockNuevo": 11,
+    "motivo": "Anulación de venta - Delivery que mando juan ",
+    "valor": 120000,
+    "fecha": "2025-08-21T18:19:36.583Z"
   }
 ]

@@ -1,5 +1,26 @@
 [
   {
+    "id": 1755811177700,
+    "fecha": "2025-08-21T21:19:37.700Z",
+    "cliente": "Cliente 360",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 2,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 240000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 240000,
+    "descuento": 0,
+    "total": 240000,
+    "ganancia": 64000
+  },
+  {
     "id": 1755800366973,
     "fecha": "2025-08-21T18:19:26.973Z",
     "cliente": "Delivery que mando juan ",
@@ -303,24 +324,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1755811177700,
-    "fecha": "2025-08-21T21:19:37.700Z",
-    "cliente": "Cliente 360",
+    "id": 1755811312819,
+    "fecha": "2025-08-21T21:21:52.819Z",
+    "cliente": "Regale a morel una caja",
     "productos": [
       {
         "productoId": 1753991399570,
         "nombre": "Vital Honey VIP",
-        "cantidad": 2,
+        "cantidad": 1,
         "precioUnitario": 120000,
         "costoUnitario": 88000,
-        "subtotal": 240000,
+        "subtotal": 120000,
         "precioOriginal": 120000
       }
     ],
     "metodoPago": "efectivo",
-    "subtotal": 240000,
-    "descuento": 0,
-    "total": 240000,
-    "ganancia": 64000
+    "subtotal": 120000,
+    "descuento": 120000,
+    "total": 0,
+    "ganancia": 32000
   }
 ]

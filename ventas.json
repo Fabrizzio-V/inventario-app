@@ -1,26 +1,5 @@
 [
   {
-    "id": 1755800369756,
-    "fecha": "2025-08-21T18:19:29.756Z",
-    "cliente": "Delivery que mando juan ",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 1,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 120000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 120000,
-    "descuento": 0,
-    "total": 120000,
-    "ganancia": 32000
-  },
-  {
     "id": 1755800366973,
     "fecha": "2025-08-21T18:19:26.973Z",
     "cliente": "Delivery que mando juan ",

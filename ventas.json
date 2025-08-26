@@ -1,5 +1,26 @@
 [
   {
+    "id": 1756223074182,
+    "fecha": "2025-08-26T15:44:34.182Z",
+    "cliente": "Clienta farmacia ",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 6,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 720000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "transferencia",
+    "subtotal": 720000,
+    "descuento": 0,
+    "total": 720000,
+    "ganancia": 192000
+  },
+  {
     "id": 1755811312819,
     "fecha": "2025-08-21T21:21:52.819Z",
     "cliente": "Regale a morel una caja",
@@ -345,24 +366,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1756223074182,
-    "fecha": "2025-08-26T15:44:34.182Z",
-    "cliente": "Clienta farmacia ",
+    "id": 1756223087963,
+    "fecha": "2025-08-26T15:44:47.963Z",
+    "cliente": "Naturlider",
     "productos": [
       {
         "productoId": 1753991399570,
         "nombre": "Vital Honey VIP",
-        "cantidad": 6,
+        "cantidad": 3,
         "precioUnitario": 120000,
         "costoUnitario": 88000,
-        "subtotal": 720000,
+        "subtotal": 360000,
         "precioOriginal": 120000
       }
     ],
     "metodoPago": "transferencia",
-    "subtotal": 720000,
+    "subtotal": 360000,
     "descuento": 0,
-    "total": 720000,
-    "ganancia": 192000
+    "total": 360000,
+    "ganancia": 96000
   }
 ]

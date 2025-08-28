@@ -1,5 +1,26 @@
 [
   {
+    "id": 1756223087963,
+    "fecha": "2025-08-26T15:44:47.963Z",
+    "cliente": "Naturlider",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 3,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 360000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "transferencia",
+    "subtotal": 360000,
+    "descuento": 0,
+    "total": 360000,
+    "ganancia": 96000
+  },
+  {
     "id": 1756223074182,
     "fecha": "2025-08-26T15:44:34.182Z",
     "cliente": "Clienta farmacia ",
@@ -366,24 +387,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1756223087963,
-    "fecha": "2025-08-26T15:44:47.963Z",
+    "id": 1756382778425,
+    "fecha": "2025-08-28T12:06:18.425Z",
     "cliente": "Naturlider",
     "productos": [
       {
         "productoId": 1753991399570,
         "nombre": "Vital Honey VIP",
-        "cantidad": 3,
+        "cantidad": 2,
         "precioUnitario": 120000,
         "costoUnitario": 88000,
-        "subtotal": 360000,
+        "subtotal": 240000,
         "precioOriginal": 120000
       }
     ],
-    "metodoPago": "transferencia",
-    "subtotal": 360000,
+    "metodoPago": "efectivo",
+    "subtotal": 240000,
     "descuento": 0,
-    "total": 360000,
-    "ganancia": 96000
+    "total": 240000,
+    "ganancia": 64000
   }
 ]

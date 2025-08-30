@@ -1,8 +1,29 @@
 [
   {
+    "id": 1756508220997,
+    "fecha": "2025-08-29T22:57:00.997Z",
+    "cliente": "Clientx ",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 1,
+        "precioUnitario": 130000,
+        "costoUnitario": 88000,
+        "subtotal": 130000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 130000,
+    "descuento": 0,
+    "total": 130000,
+    "ganancia": 42000
+  },
+  {
     "id": 1756508174668,
     "fecha": "2025-08-29T22:56:14.668Z",
-    "cliente": "Cliente pas� casa",
+    "cliente": "Cliente pasó casa",
     "productos": [
       {
         "productoId": 1753991399570,
@@ -242,7 +263,7 @@
   {
     "id": 1755392132459,
     "fecha": "2025-08-17T00:55:32.459Z",
-    "cliente": "Venta de mamá",
+    "cliente": "Venta de mamÃ¡",
     "productos": [
       {
         "productoId": 1753991399570,
@@ -429,24 +450,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1756508220997,
-    "fecha": "2025-08-29T22:57:00.997Z",
-    "cliente": "Clientx ",
+    "id": 1756558053313,
+    "fecha": "2025-08-30T12:47:33.313Z",
+    "cliente": "Clientemielcerca",
     "productos": [
       {
         "productoId": 1753991399570,
         "nombre": "Vital Honey VIP",
         "cantidad": 1,
-        "precioUnitario": 130000,
+        "precioUnitario": 120000,
         "costoUnitario": 88000,
-        "subtotal": 130000,
+        "subtotal": 120000,
         "precioOriginal": 120000
       }
     ],
     "metodoPago": "efectivo",
-    "subtotal": 130000,
+    "subtotal": 120000,
     "descuento": 0,
-    "total": 130000,
-    "ganancia": 42000
+    "total": 120000,
+    "ganancia": 32000
   }
 ]

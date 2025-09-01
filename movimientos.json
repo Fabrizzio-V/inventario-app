@@ -1,5 +1,18 @@
 [
   {
+    "id": 1756739739279.032,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 3,
+    "stockAnterior": 10,
+    "stockNuevo": 7,
+    "motivo": "Venta - miel cliente 360",
+    "valor": 360000,
+    "fecha": "2025-09-01T15:15:39.279Z",
+    "ventaId": 1756739739279
+  },
+  {
     "id": 1756558053313.909,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -558,16 +571,15 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1756739739279.032,
+    "id": 1756759394854,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "venta",
+    "tipo": "ajuste",
     "cantidad": 3,
-    "stockAnterior": 10,
-    "stockNuevo": 7,
-    "motivo": "Venta - miel cliente 360",
-    "valor": 360000,
-    "fecha": "2025-09-01T15:15:39.279Z",
-    "ventaId": 1756739739279
+    "stockAnterior": 7,
+    "stockNuevo": 4,
+    "motivo": "ajuste",
+    "valor": 264000,
+    "fecha": "2025-09-01T20:43:14.854Z"
   }
 ]

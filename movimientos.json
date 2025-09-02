@@ -1,5 +1,18 @@
 [
   {
+    "id": 1756815515429.8757,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 1,
+    "stockAnterior": 38,
+    "stockNuevo": 37,
+    "motivo": "Venta - Cliente miel  fiat rojo",
+    "valor": 126000,
+    "fecha": "2025-09-02T12:18:35.429Z",
+    "ventaId": 1756815515429
+  },
+  {
     "id": 1756759589367,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -607,16 +620,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1756815515429.8757,
+    "id": 1756825751150.7156,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 1,
-    "stockAnterior": 38,
-    "stockNuevo": 37,
-    "motivo": "Venta - Cliente miel  fiat rojo",
-    "valor": 126000,
-    "fecha": "2025-09-02T12:18:35.429Z",
-    "ventaId": 1756815515429
+    "cantidad": 3,
+    "stockAnterior": 37,
+    "stockNuevo": 34,
+    "motivo": "Venta - Farmacia",
+    "valor": 360000,
+    "fecha": "2025-09-02T15:09:11.150Z",
+    "ventaId": 1756825751150
   }
 ]

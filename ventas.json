@@ -1,5 +1,26 @@
 [
   {
+    "id": 1756825751150,
+    "fecha": "2025-09-02T15:09:11.150Z",
+    "cliente": "Farmacia",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 3,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 360000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 360000,
+    "descuento": 0,
+    "total": 360000,
+    "ganancia": 96000
+  },
+  {
     "id": 1756815515429,
     "fecha": "2025-09-02T12:18:35.429Z",
     "cliente": "Cliente miel  fiat rojo",
@@ -513,24 +534,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1756825751150,
-    "fecha": "2025-09-02T15:09:11.150Z",
-    "cliente": "Farmacia",
+    "id": 1757373289138,
+    "fecha": "2025-09-08T23:14:49.138Z",
+    "cliente": "Boliviano nuevo ",
     "productos": [
       {
         "productoId": 1753991399570,
         "nombre": "Vital Honey VIP",
-        "cantidad": 3,
-        "precioUnitario": 120000,
+        "cantidad": 2,
+        "precioUnitario": 130000,
         "costoUnitario": 88000,
-        "subtotal": 360000,
+        "subtotal": 260000,
         "precioOriginal": 120000
       }
     ],
-    "metodoPago": "efectivo",
-    "subtotal": 360000,
+    "metodoPago": "transferencia",
+    "subtotal": 260000,
     "descuento": 0,
-    "total": 360000,
-    "ganancia": 96000
+    "total": 260000,
+    "ganancia": 84000
   }
 ]

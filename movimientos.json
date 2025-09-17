@@ -1,5 +1,18 @@
 [
   {
+    "id": 1758128887647.6743,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 3,
+    "stockAnterior": 47,
+    "stockNuevo": 44,
+    "motivo": "Venta - X",
+    "valor": 360000,
+    "fecha": "2025-09-17T17:08:07.647Z",
+    "ventaId": 1758128887647
+  },
+  {
     "id": 1758128865073,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -696,16 +709,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1758128887647.6743,
+    "id": 1758129004974.2834,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 3,
-    "stockAnterior": 47,
-    "stockNuevo": 44,
-    "motivo": "Venta - X",
-    "valor": 360000,
-    "fecha": "2025-09-17T17:08:07.647Z",
-    "ventaId": 1758128887647
+    "cantidad": 22,
+    "stockAnterior": 44,
+    "stockNuevo": 22,
+    "motivo": "Venta - Boliviano",
+    "valor": 2530000,
+    "fecha": "2025-09-17T17:10:04.974Z",
+    "ventaId": 1758129004974
   }
 ]

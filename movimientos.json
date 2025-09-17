@@ -1,5 +1,17 @@
 [
   {
+    "id": 1758128865073,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "entrada",
+    "cantidad": 20,
+    "stockAnterior": 27,
+    "stockNuevo": 47,
+    "motivo": "entrada",
+    "valor": 1760000,
+    "fecha": "2025-09-17T17:07:45.073Z"
+  },
+  {
     "id": 1758128846356,
     "productoId": 1755711211680,
     "productoNombre": "Vital FEM",
@@ -684,15 +696,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1758128865073,
+    "id": 1758128887647.6743,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
-    "tipo": "entrada",
-    "cantidad": 20,
-    "stockAnterior": 27,
-    "stockNuevo": 47,
-    "motivo": "entrada",
-    "valor": 1760000,
-    "fecha": "2025-09-17T17:07:45.073Z"
+    "tipo": "venta",
+    "cantidad": 3,
+    "stockAnterior": 47,
+    "stockNuevo": 44,
+    "motivo": "Venta - X",
+    "valor": 360000,
+    "fecha": "2025-09-17T17:08:07.647Z",
+    "ventaId": 1758128887647
   }
 ]

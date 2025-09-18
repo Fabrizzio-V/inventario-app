@@ -1,5 +1,26 @@
 [
   {
+    "id": 1758129031700,
+    "fecha": "2025-09-17T17:10:31.700Z",
+    "cliente": "Boliviano",
+    "productos": [
+      {
+        "productoId": 1755711211680,
+        "nombre": "Vital FEM",
+        "cantidad": 10,
+        "precioUnitario": 85000,
+        "costoUnitario": 56000,
+        "subtotal": 850000,
+        "precioOriginal": 85000
+      }
+    ],
+    "metodoPago": "efectivo",
+    "subtotal": 850000,
+    "descuento": 0,
+    "total": 850000,
+    "ganancia": 290000
+  },
+  {
     "id": 1758129004974,
     "fecha": "2025-09-17T17:10:04.974Z",
     "cliente": "Boliviano",
@@ -639,24 +660,24 @@
     "ganancia": 42000
   },
   {
-    "id": 1758129031700,
-    "fecha": "2025-09-17T17:10:31.700Z",
-    "cliente": "Boliviano",
+    "id": 1758215018524,
+    "fecha": "2025-09-18T17:03:38.524Z",
+    "cliente": "Alicia",
     "productos": [
       {
-        "productoId": 1755711211680,
-        "nombre": "Vital FEM",
-        "cantidad": 10,
-        "precioUnitario": 85000,
-        "costoUnitario": 56000,
-        "subtotal": 850000,
-        "precioOriginal": 85000
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 2,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 240000,
+        "precioOriginal": 120000
       }
     ],
-    "metodoPago": "efectivo",
-    "subtotal": 850000,
+    "metodoPago": "transferencia",
+    "subtotal": 240000,
     "descuento": 0,
-    "total": 850000,
-    "ganancia": 290000
+    "total": 240000,
+    "ganancia": 64000
   }
 ]

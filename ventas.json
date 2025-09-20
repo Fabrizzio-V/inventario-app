@@ -1,5 +1,26 @@
 [
   {
+    "id": 1758215018524,
+    "fecha": "2025-09-18T17:03:38.524Z",
+    "cliente": "Alicia",
+    "productos": [
+      {
+        "productoId": 1753991399570,
+        "nombre": "Vital Honey VIP",
+        "cantidad": 2,
+        "precioUnitario": 120000,
+        "costoUnitario": 88000,
+        "subtotal": 240000,
+        "precioOriginal": 120000
+      }
+    ],
+    "metodoPago": "transferencia",
+    "subtotal": 240000,
+    "descuento": 0,
+    "total": 240000,
+    "ganancia": 64000
+  },
+  {
     "id": 1758129031700,
     "fecha": "2025-09-17T17:10:31.700Z",
     "cliente": "Boliviano",
@@ -660,9 +681,9 @@
     "ganancia": 42000
   },
   {
-    "id": 1758215018524,
-    "fecha": "2025-09-18T17:03:38.524Z",
-    "cliente": "Alicia",
+    "id": 1758374415754,
+    "fecha": "2025-09-20T13:20:15.754Z",
+    "cliente": "C",
     "productos": [
       {
         "productoId": 1753991399570,
@@ -674,7 +695,7 @@
         "precioOriginal": 120000
       }
     ],
-    "metodoPago": "transferencia",
+    "metodoPago": "efectivo",
     "subtotal": 240000,
     "descuento": 0,
     "total": 240000,

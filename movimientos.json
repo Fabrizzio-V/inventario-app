@@ -1,5 +1,18 @@
 [
   {
+    "id": 1758572141994.3428,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "venta",
+    "cantidad": 4,
+    "stockAnterior": 18,
+    "stockNuevo": 14,
+    "motivo": "Venta - FARMA",
+    "valor": 480000,
+    "fecha": "2025-09-22T20:15:41.994Z",
+    "ventaId": 1758572141994
+  },
+  {
     "id": 1758374415754.0137,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -761,16 +774,16 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1758572141994.3428,
+    "id": 1758572156449.563,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "venta",
-    "cantidad": 4,
-    "stockAnterior": 18,
-    "stockNuevo": 14,
-    "motivo": "Venta - FARMA",
-    "valor": 480000,
-    "fecha": "2025-09-22T20:15:41.994Z",
-    "ventaId": 1758572141994
+    "cantidad": 1,
+    "stockAnterior": 14,
+    "stockNuevo": 13,
+    "motivo": "Venta - X",
+    "valor": 130000,
+    "fecha": "2025-09-22T20:15:56.449Z",
+    "ventaId": 1758572156449
   }
 ]

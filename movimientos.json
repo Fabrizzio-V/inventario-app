@@ -1,5 +1,17 @@
 [
   {
+    "id": 1759238868511.0752,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 3,
+    "stockAnterior": 135,
+    "stockNuevo": 138,
+    "motivo": "Anulación de venta - Cliente 360",
+    "valor": 360000,
+    "fecha": "2025-09-30T13:27:48.511Z"
+  },
+  {
     "id": 1759238867856.0144,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -1099,15 +1111,39 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1759238868511.0752,
+    "id": 1759238875791.5388,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "ajuste",
     "cantidad": 3,
-    "stockAnterior": 135,
-    "stockNuevo": 138,
-    "motivo": "Anulación de venta - Cliente 360",
+    "stockAnterior": 138,
+    "stockNuevo": 141,
+    "motivo": "Anulación de venta - Farmacia",
     "valor": 360000,
-    "fecha": "2025-09-30T13:27:48.511Z"
+    "fecha": "2025-09-30T13:27:55.791Z"
+  },
+  {
+    "id": 1759238876391.0632,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 141,
+    "stockNuevo": 142,
+    "motivo": "Anulación de venta - Cliente miel  fiat rojo",
+    "valor": 126000,
+    "fecha": "2025-09-30T13:27:56.391Z"
+  },
+  {
+    "id": 1759238877151.2073,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 3,
+    "stockAnterior": 142,
+    "stockNuevo": 145,
+    "motivo": "Anulación de venta - miel cliente 360",
+    "valor": 360000,
+    "fecha": "2025-09-30T13:27:57.151Z"
   }
 ]

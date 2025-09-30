@@ -189,27 +189,6 @@
     "ganancia": 96000
   },
   {
-    "id": 1756223074182,
-    "fecha": "2025-08-26T15:44:34.182Z",
-    "cliente": "Clienta farmacia ",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 6,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 720000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "transferencia",
-    "subtotal": 720000,
-    "descuento": 0,
-    "total": 720000,
-    "ganancia": 192000
-  },
-  {
     "id": 1755811312819,
     "fecha": "2025-08-21T21:21:52.819Z",
     "cliente": "Regale a morel una caja",
@@ -250,57 +229,6 @@
     "descuento": 0,
     "total": 240000,
     "ganancia": 64000
-  },
-  {
-    "id": 1755800366973,
-    "fecha": "2025-08-21T18:19:26.973Z",
-    "cliente": "Delivery que mando juan ",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 1,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 120000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 120000,
-    "descuento": 0,
-    "total": 120000,
-    "ganancia": 32000
-  },
-  {
-    "id": 1755711371686,
-    "fecha": "2025-08-20T17:36:11.686Z",
-    "cliente": "Boliviano Cristian",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 24,
-        "precioUnitario": 115000,
-        "costoUnitario": 88000,
-        "subtotal": 2760000,
-        "precioOriginal": 120000
-      },
-      {
-        "productoId": 1755711211680,
-        "nombre": "Vital FEM",
-        "cantidad": 3,
-        "precioUnitario": 85000,
-        "costoUnitario": 56000,
-        "subtotal": 255000,
-        "precioOriginal": 85000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 3015000,
-    "descuento": 0,
-    "total": 3015000,
-    "ganancia": 735000
   },
   {
     "id": 1755703190992,

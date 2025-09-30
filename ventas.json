@@ -1,26 +1,5 @@
 [
   {
-    "id": 1756739739279,
-    "fecha": "2025-09-01T15:15:39.279Z",
-    "cliente": "miel cliente 360",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 3,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 360000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 360000,
-    "descuento": 0,
-    "total": 360000,
-    "ganancia": 96000
-  },
-  {
     "id": 1756508174668,
     "fecha": "2025-08-29T22:56:14.668Z",
     "cliente": "Cliente pasó casa",
@@ -61,27 +40,6 @@
     "descuento": 0,
     "total": 360000,
     "ganancia": 96000
-  },
-  {
-    "id": 1755811312819,
-    "fecha": "2025-08-21T21:21:52.819Z",
-    "cliente": "Regale a morel una caja",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 1,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 120000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 120000,
-    "descuento": 120000,
-    "total": 0,
-    "ganancia": 32000
   },
   {
     "id": 1755703155860,

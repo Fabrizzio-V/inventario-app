@@ -42,69 +42,6 @@
     "ganancia": 64000
   },
   {
-    "id": 1758129031700,
-    "fecha": "2025-09-17T17:10:31.700Z",
-    "cliente": "Boliviano",
-    "productos": [
-      {
-        "productoId": 1755711211680,
-        "nombre": "Vital FEM",
-        "cantidad": 10,
-        "precioUnitario": 85000,
-        "costoUnitario": 56000,
-        "subtotal": 850000,
-        "precioOriginal": 85000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 850000,
-    "descuento": 0,
-    "total": 850000,
-    "ganancia": 290000
-  },
-  {
-    "id": 1758129004974,
-    "fecha": "2025-09-17T17:10:04.974Z",
-    "cliente": "Boliviano",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 22,
-        "precioUnitario": 115000,
-        "costoUnitario": 88000,
-        "subtotal": 2530000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "transferencia",
-    "subtotal": 2530000,
-    "descuento": 0,
-    "total": 2530000,
-    "ganancia": 594000
-  },
-  {
-    "id": 1758128887647,
-    "fecha": "2025-09-17T17:08:07.647Z",
-    "cliente": "X",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 3,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 360000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "transferencia",
-    "subtotal": 360000,
-    "descuento": 0,
-    "total": 360000,
-    "ganancia": 96000
-  },
-  {
     "id": 1757686668847,
     "fecha": "2025-09-12T14:17:48.847Z",
     "cliente": "Naturlider",

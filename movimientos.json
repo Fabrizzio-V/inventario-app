@@ -1,5 +1,53 @@
 [
   {
+    "id": 1759238853199.943,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 87,
+    "stockNuevo": 88,
+    "motivo": "Anulación de venta - Cliente x en moto ",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:27:33.199Z"
+  },
+  {
+    "id": 1759238852552.1243,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 86,
+    "stockNuevo": 87,
+    "motivo": "Anulación de venta - Juan delivery",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:27:32.552Z"
+  },
+  {
+    "id": 1759238851967.9453,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 3,
+    "stockAnterior": 83,
+    "stockNuevo": 86,
+    "motivo": "Anulación de venta - Miel cliente siempre ",
+    "valor": 360000,
+    "fecha": "2025-09-30T13:27:31.967Z"
+  },
+  {
+    "id": 1759238851383.327,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 82,
+    "stockNuevo": 83,
+    "motivo": "Anulación de venta - Ariel Camio blanca",
+    "valor": 130000,
+    "fecha": "2025-09-30T13:27:31.383Z"
+  },
+  {
     "id": 1759238849439.7412,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",

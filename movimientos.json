@@ -1,5 +1,65 @@
 [
   {
+    "id": 1759238856072.6084,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 114,
+    "stockNuevo": 115,
+    "motivo": "Anulación de venta - Delivery que mando juan ",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:27:36.072Z"
+  },
+  {
+    "id": 1759238854767.0195,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 24,
+    "stockAnterior": 90,
+    "stockNuevo": 114,
+    "motivo": "Anulación de venta - Boliviano Cristian",
+    "valor": 2760000,
+    "fecha": "2025-09-30T13:27:34.767Z"
+  },
+  {
+    "id": 1759238854767.0232,
+    "productoId": 1755711211680,
+    "productoNombre": "Vital FEM",
+    "tipo": "ajuste",
+    "cantidad": 3,
+    "stockAnterior": 10,
+    "stockNuevo": 13,
+    "motivo": "Anulación de venta - Boliviano Cristian",
+    "valor": 255000,
+    "fecha": "2025-09-30T13:27:34.767Z"
+  },
+  {
+    "id": 1759238854223.9595,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 89,
+    "stockNuevo": 90,
+    "motivo": "Anulación de venta - Gaston ",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:27:34.223Z"
+  },
+  {
+    "id": 1759238853751.0166,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 88,
+    "stockNuevo": 89,
+    "motivo": "Anulación de venta - Venta de mamÃƒÂ¡",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:27:33.751Z"
+  },
+  {
     "id": 1759238853199.943,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",

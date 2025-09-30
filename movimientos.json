@@ -1,5 +1,29 @@
 [
   {
+    "id": 1759238879903.5198,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 150,
+    "stockNuevo": 151,
+    "motivo": "Anulación de venta - Juan delivery",
+    "valor": 115000,
+    "fecha": "2025-09-30T13:27:59.903Z"
+  },
+  {
+    "id": 1759238879079.9617,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 4,
+    "stockAnterior": 146,
+    "stockNuevo": 150,
+    "motivo": "Anulación de venta - Naturlider",
+    "valor": 480000,
+    "fecha": "2025-09-30T13:27:59.079Z"
+  },
+  {
     "id": 1759238877863.3264,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
@@ -1159,15 +1183,15 @@
     "fecha": "2025-07-31T19:48:53.170Z"
   },
   {
-    "id": 1759238879079.9617,
+    "id": 1759238880896.2559,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",
     "tipo": "ajuste",
-    "cantidad": 4,
-    "stockAnterior": 146,
-    "stockNuevo": 150,
-    "motivo": "Anulación de venta - Naturlider",
-    "valor": 480000,
-    "fecha": "2025-09-30T13:27:59.079Z"
+    "cantidad": 1,
+    "stockAnterior": 151,
+    "stockNuevo": 152,
+    "motivo": "Anulación de venta - Cliente pasÃ³ casa",
+    "valor": 120000,
+    "fecha": "2025-09-30T13:28:00.896Z"
   }
 ]

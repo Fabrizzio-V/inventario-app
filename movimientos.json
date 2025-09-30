@@ -1025,5 +1025,41 @@
     "motivo": "Stock inicial",
     "valor": 704000,
     "fecha": "2025-07-31T19:48:53.170Z"
+  },
+  {
+    "id": 1759238861287.7683,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 2,
+    "stockAnterior": 121,
+    "stockNuevo": 123,
+    "motivo": "Anulación de venta - C",
+    "valor": 240000,
+    "fecha": "2025-09-30T13:27:41.287Z"
+  },
+  {
+    "id": 1759238861967.0688,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 2,
+    "stockAnterior": 123,
+    "stockNuevo": 125,
+    "motivo": "Anulación de venta - Alicia",
+    "valor": 240000,
+    "fecha": "2025-09-30T13:27:41.967Z"
+  },
+  {
+    "id": 1759238862639.7622,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 2,
+    "stockAnterior": 125,
+    "stockNuevo": 127,
+    "motivo": "Anulación de venta - Boliviano nuevo ",
+    "valor": 260000,
+    "fecha": "2025-09-30T13:27:42.639Z"
   }
 ]

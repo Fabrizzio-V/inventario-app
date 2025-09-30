@@ -1,5 +1,29 @@
 [
   {
+    "id": 1759238849439.7412,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 2,
+    "stockAnterior": 80,
+    "stockNuevo": 82,
+    "motivo": "Anulación de venta - Naturlider",
+    "valor": 240000,
+    "fecha": "2025-09-30T13:27:29.439Z"
+  },
+  {
+    "id": 1759238848767.8987,
+    "productoId": 1753991399570,
+    "productoNombre": "Vital Honey VIP",
+    "tipo": "ajuste",
+    "cantidad": 1,
+    "stockAnterior": 79,
+    "stockNuevo": 80,
+    "motivo": "Anulación de venta - Clientx ",
+    "valor": 130000,
+    "fecha": "2025-09-30T13:27:28.767Z"
+  },
+  {
     "id": 1759238847831.4395,
     "productoId": 1753991399570,
     "productoNombre": "Vital Honey VIP",

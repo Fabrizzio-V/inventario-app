@@ -42,27 +42,6 @@
     "ganancia": 64000
   },
   {
-    "id": 1757686668847,
-    "fecha": "2025-09-12T14:17:48.847Z",
-    "cliente": "Naturlider",
-    "productos": [
-      {
-        "productoId": 1753991399570,
-        "nombre": "Vital Honey VIP",
-        "cantidad": 4,
-        "precioUnitario": 120000,
-        "costoUnitario": 88000,
-        "subtotal": 480000,
-        "precioOriginal": 120000
-      }
-    ],
-    "metodoPago": "efectivo",
-    "subtotal": 480000,
-    "descuento": 0,
-    "total": 480000,
-    "ganancia": 128000
-  },
-  {
     "id": 1757686650176,
     "fecha": "2025-09-12T14:17:30.176Z",
     "cliente": "Cliente regalito ",
